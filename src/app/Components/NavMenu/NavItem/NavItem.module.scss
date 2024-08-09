@@ -1,0 +1,32 @@
+@import '../../../styles/globalColors/color.scss';
+
+.navItem {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.navLink {
+    color: #FFF;
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.navLink:hover {
+    background-color: $dark2;
+    padding: 12px 8px;
+    border-radius: 8px;
+    width: 264px;
+}
+
+.navLink:active {
+    background-color: $dark2;
+    padding: 12px 8px;
+    border-radius: 8px;
+    width: 264px;
+}
