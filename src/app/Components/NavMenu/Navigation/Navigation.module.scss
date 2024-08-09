@@ -1,5 +1,35 @@
 @import '../../../styles/globalColors/color.scss';
 
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 312px;
+    width: 100%;
+    background-color: $darker;
+    padding: 24px;
+    gap: 28px;
+    position: sticky;
+    top: 0;
+}
+
+.logo {
+    color: #fff;
+    font-size: 36px;
+    font-family: 700;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 60px;
+    max-width: 268px;
+    width: 100%;
+}
+
+
 .navList {
     display: flex;
     flex-direction: column;
@@ -13,6 +43,3 @@
     border-radius: 8px;
     width: 264px;
 }
-
-
-
