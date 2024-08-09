@@ -1,0 +1,32 @@
+@import '../../styles/globalColors/color.scss';
+@import '../../styles/globalBorders/borders.scss';
+
+.button {
+    cursor: pointer;
+    color: #FFF;
+    text-align: center;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: $darker;
+    border:none;
+    border-radius: 24px;
+    padding: 12px 10px;
+    width: 100%;
+
+}
+
+.button:active,
+.button:hover {
+    background-color: #3b8c75;
+}
+
+.secondary {
+    background-color: $dark1;
+    color: $error;
+}
+
+.secondary:hover,
+.secondary:active {
+    background-color: $darker;
+}
