@@ -1,5 +1,5 @@
-import styles from "./AlbumInfoCard.module.scss";
 import Image from "next/image";
+import styles from './AlbumPlaylistInfoCard.module.scss'
 
 type Props = {
   image: string;
@@ -7,7 +7,7 @@ type Props = {
   artistName: string;
 };
 
-const AlbumInfoCard = ({ image, playlistName, artistName }: Props) => {
+const AlbumPlaylistInfoCard = ({ image, playlistName, artistName }: Props) => {
   return (
     <div className={styles.container}>
       <Image src={image} width={138} height={138} alt={"Image"} />
@@ -20,4 +20,4 @@ const AlbumInfoCard = ({ image, playlistName, artistName }: Props) => {
   );
 };
 
-export default AlbumInfoCard;
+export default AlbumPlaylistInfoCard;
