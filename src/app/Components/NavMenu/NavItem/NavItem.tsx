@@ -1,40 +1,31 @@
-import React from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { usePathname } from "next/navigation";
-import styles from "./NavItem.module.scss";
-import { NavLinkInterface } from "@/app/interface/NavLink.interface";
+import Link from 'next/link';
+import styles from './NavItem.module.scss';
+import Image from 'next/image'
 
+type navitemProps = {
+    link:string;
+    iconSrc:string;
+    text:string;
+    classname:string;
 
-type NavListProps = {
-  links: NavLinkInterface[];
-};
-
-const NavItem = ({ links }: NavListProps) => {
-  const pathname = usePathname();
-
-  return (
-    <ul className={styles.navList}>
-      {links.map((link) => {
-        const isActive = pathname === link.href;
-        return (
-          <li key={link.key} className={styles.navItem}>
-            <Link href={link.href} passHref
-              className={`${styles.navLink} ${isActive ? styles.active : ""}`}>
+  };
+const NavItem =({link,iconSrc,text,classname}:navitemProps)=>{
+    
+    return (
+        <li className={styles.navItem}>
+            <Link href={link} passHref
+              className={`${styles.navLink} ${classname}`}>
               <Image
-                src={link.iconSrc}
-                alt={link.text || "Link icon"}
+                src={iconSrc}
+                alt={text || "Link icon"}
                 width={32}
                 height={32}
                 className={styles.navIcon}
               />
-              {link.text}
+              {text}
             </Link>
           </li>
-        );
-      })}
-    </ul>
-  );
-};
+    )
+}
 
 export default NavItem;

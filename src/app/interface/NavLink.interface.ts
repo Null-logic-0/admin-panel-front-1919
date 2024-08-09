@@ -1,6 +1,6 @@
 export interface NavLinkInterface {
     key: string;
     href: string;
-    text?: string;
+    title: string;
     iconSrc:string;
   };

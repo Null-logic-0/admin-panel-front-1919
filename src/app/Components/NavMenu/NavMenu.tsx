@@ -1,15 +1,16 @@
 'use client'
 import React, { useState } from 'react';
-import NavItem from './NavItem/NavItem';
 import style from './NavMenu.module.scss';
+import NavItem from './Navigation/Navigation';
+import Navigation from './Navigation/Navigation';
 
 const NavMenu = () => {
-    const links = [
-        { key: 'home', href: "/", text: "Artist", iconSrc: '/icons/favourite.svg' },
-        { key: 'user', href: "/user", text: "User", iconSrc: '/icons/user.svg' },
-        { key: 'Playlist', href: "/playlist", text: "Playlist", iconSrc: '/icons/playlists.svg' },
-        { key: 'album', href: "/album", text: "Album", iconSrc: '/icons/albums.svg' },
-        { key: 'music', href: "/music", text: "Music", iconSrc: '/icons/musics.svg' },
+    const linksData = [
+        { key: 'home', href: "/", title: "Artist", iconSrc: '/icons/favourite.svg' },
+        { key: 'user', href: "/user", title: "User", iconSrc: '/icons/user.svg' },
+        { key: 'Playlist', href: "/playlist", title: "Playlist", iconSrc: '/icons/playlists.svg' },
+        { key: 'album', href: "/album", title: "Album", iconSrc: '/icons/albums.svg' },
+        { key: 'music', href: "/music", title: "Music", iconSrc: '/icons/musics.svg' },
     ];
 
 
@@ -18,8 +19,7 @@ const NavMenu = () => {
             <h1 className={style.logo}>TnNdshN</h1>
 
             <div className={style.container}>
-                <NavItem links={links} />
-
+                <Navigation links={linksData} />
             </div>
         </div>
     );

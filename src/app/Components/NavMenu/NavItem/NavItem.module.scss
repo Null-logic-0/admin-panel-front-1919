@@ -1,18 +1,9 @@
 @import '../../../styles/globalColors/color.scss';
-@import '../../../styles/globalBorders/borders.scss';
-
-.navList {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 28px;
-}
 
 .navItem {
     display: flex;
     align-items: center;
     gap: 12px;
-
 }
 
 .navLink {
@@ -26,24 +17,16 @@
     gap: 12px;
 }
 
-.navLink:hover{
+.navLink:hover {
     background-color: $dark2;
     padding: 12px 8px;
-    border-radius: $small;
+    border-radius: 8px;
     width: 264px;
 }
 
 .navLink:active {
     background-color: $dark2;
     padding: 12px 8px;
-    border-radius: $small;
-    width: 264px;  
-}
-
-.active {
-    background-color: $dark2;
-    padding: 12px 8px;
-    border-radius: $small;
+    border-radius: 8px;
     width: 264px;
 }
-
