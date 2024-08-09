@@ -1,10 +1,11 @@
-import Button from "./Components/Button/Button";
-import Dropdown from "./Components/Dropdown/Dropdown";
+'use client'
 import styles from "./page.module.css";
 
+
 export default function Home() {
-  return (
-    <main>
-    </main>
-  );
+   
+    return (
+        <main>
+        </main>
+    );
 }
