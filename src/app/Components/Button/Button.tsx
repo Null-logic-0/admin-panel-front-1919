@@ -1,17 +1,13 @@
-import styles from  './Button.module.scss';
+import styles from './Button.module.scss';
 
 type buttonProps = {
-    title:string;
+    title: string;
     mode?: 'secondary';
-    size?: 'small'| 'large';
-    onclick?:()=>void;
+    onclick?: () => void;
 }
 
-const Button =({title,mode,size,onclick}:buttonProps)=>{
-    const classNames =[styles.button];
-
-    if (size == 'large') classNames.push(styles.large);
-    else classNames.push(styles.small);
+const Button = ({ title, mode, onclick }: buttonProps) => {
+    const classNames = [styles.button];
 
     if (mode == 'secondary') classNames.push(styles.secondary);
 
