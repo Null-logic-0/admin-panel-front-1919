@@ -8,41 +8,12 @@ import AlbumPlaylistInfoCard from '../AlbumPlaylistInfoCard/AlbumPlaylistInfoCar
 import MultiTaskButton from '../MultiTaskButton/MultiTaskButton';
 
 
-const data: albumPlaylistTableInterface[] = [
-    {
-        id: 1,
-        key: '1',
-        image: '/images/CardIMG.png',
-        playlistName: 'Playlist Name',
-        artistName: 'Artist Name',
-        view: '111,444',
-        time: '54:18',
-        like: '17,951',
-    },
-    {
-        id: 2,
-        key: '2',
-        image: '/images/CardIMG.png',
-        playlistName: 'Playlist Name',
-        artistName: 'Artist Name',
-        view: '111,444',
-        time: '54:18',
-        like: '17,951',
-    },
-    {
-        id: 3,
-        key: '3',
-        image: '/images/CardIMG.png',
-        playlistName: 'Playlist Name',
-        artistName: 'Artist Name',
-        view: '111,444',
-        time: '54:18',
-        like: '17,951',
-    },
-];
 
+type tableProps = {
+    dataSource:albumPlaylistTableInterface[];
+}
 
-const AlbumPlaylistTable = () => {
+const AlbumPlaylistTable = ({dataSource}:tableProps) => {
     const columns = [
         {
             title: 'Playlist Name',
@@ -95,7 +66,7 @@ const AlbumPlaylistTable = () => {
     return (
         <Table
             columns={columns}
-            dataSource={data}
+            dataSource={dataSource}
             pagination={false}
             rowKey="key"
             bordered
