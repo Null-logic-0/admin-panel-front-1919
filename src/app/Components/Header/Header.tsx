@@ -3,6 +3,7 @@ import { useState } from 'react';
 import styles from './Header.module.scss';
 import Button from '../Button/Button';
 import Image from 'next/image';
+import MultiTaskButton from '../MultiTaskButton/MultiTaskButton';
 
 const Header = () => {
     const [showDetails, setShowDetails] = useState(false);
@@ -13,9 +14,7 @@ const Header = () => {
 
     return (
         <div className={styles.main}>
-            <div onClick={handleOpen} className={styles.user}>
-                <Image src={'/Icons/Logout.svg'} alt='icon' width={30} height={30}/>
-            </div>
+            <MultiTaskButton icon={'/Icons/Logout.svg'}  onclick={handleOpen}/>
             {
                 showDetails &&
                 <div className={styles.container}>
