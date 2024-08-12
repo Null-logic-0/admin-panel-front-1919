@@ -1,3 +1,4 @@
+'use client'
 import { useForm } from 'react-hook-form';
 import Button from '../../Button/Button';
 import styles from './PasswordForm.module.scss';

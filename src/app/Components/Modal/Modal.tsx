@@ -1,3 +1,4 @@
+'use client'
 import { ReactNode } from 'react';
 import styles from './Modal.module.scss';
 import MultiTaskButton from '../MultiTaskButton/MultiTaskButton';

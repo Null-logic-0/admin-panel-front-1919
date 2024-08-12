@@ -4,7 +4,7 @@
 .input {
     width: 359px;
     border-radius: $large;
-    border: none;
+    border: 1px solid $dark4;
     padding: 18px;
     background-color: #232323;
     color: #FFF;
@@ -16,6 +16,7 @@
     border: 1px solid $mainColor;
     outline: none;
 }
+
 
 .input:-webkit-autofill,
 .input:-webkit-autofill:hover,

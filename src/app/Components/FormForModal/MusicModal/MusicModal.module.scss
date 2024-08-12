@@ -1,5 +1,5 @@
-@import '../../styles/globalColors/color.scss';
-@import '../../styles/globalBorders/borders.scss';
+@import '../../../styles/globalColors/color.scss';
+@import '../../../styles/globalBorders/borders.scss';
 
 
 .main {
@@ -13,6 +13,7 @@
 
 .container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 31px;
@@ -21,8 +22,8 @@
 .inputs {
     display: flex;
     flex-direction: column;
-    gap: 32px;
-    align-items: center;
+    gap: 20px;
+    align-items: flex-start;
     justify-content: center;
 }
 
@@ -32,8 +33,8 @@
 
 .upload {
     border: 0.797px solid #FFF;
-    width: 268px;
-    height: 240px;
+    width: 168px;
+    height: 140px;
     flex-shrink: 0;
     display: flex;
     align-items: center;
@@ -68,24 +69,25 @@
         font-weight: 500;
         line-height: 32px;
     }
-    &:focus{
-        border: 1px solid $mainColor;
-    }
+
 }
 
 .button{
     width: 212px;
 }
 
-.error {
-    border: 1px solid $error !important;
+.uploadContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
 }
 
-.infoContainer {
+.fileContainer {
     display: flex;
     flex-direction: column;
-    gap: 10px;
     align-items: flex-start;
+    gap: 12px;
 }
 
 .info {
@@ -95,11 +97,8 @@
     width: 100%;
 }
 
-.errorContainer{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: flex-start;
+.error {
+    border: 1px solid $error !important;
 }
 
 .errorMessage {
