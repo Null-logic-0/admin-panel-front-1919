@@ -1,8 +1,8 @@
 'use client'
 import { useState } from 'react';
-import ArtistUserInfoCard from '../ArtistUserInfoCard/ArtistUserInfoCard';
 import styles from './Header.module.scss';
 import Button from '../Button/Button';
+import Image from 'next/image';
 
 const Header = () => {
     const [showDetails, setShowDetails] = useState(false);
@@ -14,7 +14,7 @@ const Header = () => {
     return (
         <div className={styles.main}>
             <div onClick={handleOpen} className={styles.user}>
-                <ArtistUserInfoCard userName='User Name' image='/Images/user.png' />
+                <Image src={'/Icons/Logout.svg'} alt='icon' width={30} height={30}/>
             </div>
             {
                 showDetails &&
