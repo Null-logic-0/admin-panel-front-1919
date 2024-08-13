@@ -1,7 +1,7 @@
 'use client'
 import { useForm, SubmitHandler } from 'react-hook-form';
 import Image from 'next/image';
-import styles from './MusicModal.module.scss';
+import styles from './MusicForm.module.scss';
 import { FormDataInterface } from '@/app/interface/FormForModal.interface';
 import Button from '../../Button/Button';
 import FormInput from '../FormInput/FormInput';
@@ -12,7 +12,7 @@ type FormProps = {
     setShowModal: (value: boolean) => void;
 }
 
-const MusicModal = ({ setShowModal }: FormProps) => {
+const MusicForm = ({ setShowModal }: FormProps) => {
     const { register, handleSubmit, setValue, formState: { errors }} = useForm<FormDataInterface>();
     const [audio, setAudio] = useState<string | null>(null);
     const [imageUploaded, setImageUploaded] = useState<boolean>(false);
@@ -122,4 +122,4 @@ const MusicModal = ({ setShowModal }: FormProps) => {
     );
 };
 
-export default MusicModal;
+export default MusicForm;

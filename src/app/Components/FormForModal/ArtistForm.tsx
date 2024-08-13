@@ -1,7 +1,7 @@
 'use client'
 import { useForm, SubmitHandler } from 'react-hook-form';
 import Image from 'next/image';
-import styles from './FormForModal.module.scss';
+import styles from './ArtoistForm.module.scss';
 import { FormDataInterface } from '@/app/interface/FormForModal.interface';
 import Button from '../Button/Button';
 import FormInput from './FormInput/FormInput';
@@ -12,7 +12,7 @@ type FormProps = {
   setShowModal: (value: boolean) => void;
 }
 
-const FormForModal = ({ setShowModal }: FormProps) => {
+const ArtistForm = ({ setShowModal }: FormProps) => {
   const { register, handleSubmit, setValue, formState: { errors } } = useForm<FormDataInterface>();
   const [imageUploaded, setImageUploaded] = useState<boolean>(false);
 
@@ -127,4 +127,4 @@ const FormForModal = ({ setShowModal }: FormProps) => {
   );
 };
 
-export default FormForModal;
+export default ArtistForm;
