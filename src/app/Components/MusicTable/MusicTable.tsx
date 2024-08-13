@@ -1,25 +1,24 @@
 'use client'
-import styles from './AlbumPlaylistTable.module.scss'
+import styles from './MusicTable.module.scss'
 import React from 'react';
-import { Table, Space, Button, Image } from 'antd';
-import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
-import { albumPlaylistTableInterface } from '@/app/interface/albumPlaylistTable.interface';
+import { Table, Space,} from 'antd';
 import AlbumPlaylistInfoCard from '../AlbumPlaylistInfoCard/AlbumPlaylistInfoCard';
 import MultiTaskButton from '../MultiTaskButton/MultiTaskButton';
+import { musicTableInterface } from '@/app/interface/musicTable.interface';
 
 
 
 type tableProps = {
-    dataSource:albumPlaylistTableInterface[];
+    dataSource:musicTableInterface[];
 }
 
-const AlbumPlaylistTable = ({dataSource}:tableProps) => {
+const MusicTable = ({dataSource}:tableProps) => {
     const columns = [
         {
-            title: 'Playlist Name',
-            dataIndex: 'playlistName',
-            key: 'playlistName',
-            render: (text: string, record: albumPlaylistTableInterface) => (
+            title: 'Music Name',
+            dataIndex: 'MusicName',
+            key: 'MusicName',
+            render: (text: string, record: musicTableInterface) => (
                 <AlbumPlaylistInfoCard
                     image={record.image}
                     playlistName={record.playlistName}
@@ -31,7 +30,7 @@ const AlbumPlaylistTable = ({dataSource}:tableProps) => {
             title: 'View',
             dataIndex: 'view',
             key: 'view',
-            render: (text:string, record: albumPlaylistTableInterface)=>(
+            render: (text:string, record: musicTableInterface)=>(
                 <span className={styles.text}>{record.view}</span>
             )
         },
@@ -39,21 +38,14 @@ const AlbumPlaylistTable = ({dataSource}:tableProps) => {
             title: 'Time',
             dataIndex: 'time',
             key: 'time',
-            render: (text:string, record: albumPlaylistTableInterface)=>(
+            render: (text:string, record: musicTableInterface)=>(
                 <span className={styles.text}>{record.time}</span>
             )
         },
-        {
-            title: 'Like',
-            dataIndex: 'like',
-            key: 'like',
-            render: (text:string, record: albumPlaylistTableInterface)=>(
-                <span className={styles.text}>{record.like}</span>
-            )
-        },
+    
         {
             
-            render: (text: string, record: albumPlaylistTableInterface) => (
+            render: (text: string, record: musicTableInterface) => (
                 <Space size="middle">
                     <MultiTaskButton icon={'/Icons/trash.svg'} />
                     <MultiTaskButton icon={'/Icons/pen.svg'} />
@@ -75,4 +67,4 @@ const AlbumPlaylistTable = ({dataSource}:tableProps) => {
     );
 };
 
-export default AlbumPlaylistTable;
+export default MusicTable;

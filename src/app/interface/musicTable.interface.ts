@@ -1,8 +1,9 @@
-export interface albumPlaylistTableInterface {
+export interface musicTableInterface {
     id:number;
     key: string;
     image: string;
     playlistName: string;
     artistName: string;
-    songs:string;
+    view: string;
+    time: string;
 }
