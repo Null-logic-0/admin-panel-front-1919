@@ -1,0 +1,24 @@
+.main{
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+
+}
+
+.nav {
+    left: 0;
+    position: relative;
+    padding-top: 50px;
+}
+
+.content {
+    flex-grow: 1;
+    justify-content: flex-start;
+    align-items: center;
+    padding:100px 24px;
+}

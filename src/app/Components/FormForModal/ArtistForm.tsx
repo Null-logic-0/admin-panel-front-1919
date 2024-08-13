@@ -1,7 +1,7 @@
 'use client'
 import { useForm, SubmitHandler } from 'react-hook-form';
 import Image from 'next/image';
-import styles from './ArtoistForm.module.scss';
+import styles from './ArtistForm.module.scss';
 import { FormDataInterface } from '@/app/interface/FormForModal.interface';
 import Button from '../Button/Button';
 import FormInput from './FormInput/FormInput';

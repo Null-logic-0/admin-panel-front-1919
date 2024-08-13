@@ -4,13 +4,12 @@ import styles from './ConfirmModal.module.scss';
 
 type ConfirmModalProps = {
     text: string;
-    block?: boolean;
     onclose?: () => void;
     onclick?: () => void;
 }
 
 
-const ConfirmModal = ({ text, block, onclose, onclick }: ConfirmModalProps) => {
+const ConfirmModal = ({ text, onclose, onclick }: ConfirmModalProps) => {
     return (
         <div className={styles.main}>
             <p className={styles.text}>{text}</p>

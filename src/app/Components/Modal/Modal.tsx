@@ -4,14 +4,12 @@ import styles from './Modal.module.scss';
 import MultiTaskButton from '../MultiTaskButton/MultiTaskButton';
 
 interface ModalProps {
-    isOpen: boolean;
     children: ReactNode;
     setShowModal:(value: boolean) => void;
 
 }
 
-const Modal = ({ isOpen, children,setShowModal }: ModalProps) => {
-    if (!isOpen) return null;
+const Modal = ({ children,setShowModal }: ModalProps) => {
     const handleCloseModal =()=>{
         setShowModal(false)
 
