@@ -76,7 +76,7 @@ const columns = [
         dataIndex: 'action',
         align: 'center' as 'center',
         render: () => (
-            <MultiTaskButton icon={"/Icons/plus.svg"} />
+            <MultiTaskButton icon={"/Icons/trash.svg"} />
         ),
     },
 ];

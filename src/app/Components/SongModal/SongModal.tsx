@@ -17,7 +17,7 @@ const SongModal = ({onClose}:modalProps) =>{
             <div className={styles.button}>
                 <MultiTaskButton icon={'/Icons/closeX.svg'} onclick={onClose} />
             </div>
-            <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} placeHolder={'search songs...'} />
+            <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} placeHolder={'search songs...'} mode='secondary' />
             <div className={styles.container}>
                 <SongTable/>
             </div>

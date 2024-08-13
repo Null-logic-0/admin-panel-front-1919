@@ -9,6 +9,7 @@ type searchProps = {
   onchange?: (value: string) => void;
   setSearchTerm: (value: string) => void;
   searchTerm: string;
+  mode?:'secondary';
 };
 const Search = ({
   icon,
@@ -16,6 +17,7 @@ const Search = ({
   onchange,
   setSearchTerm,
   searchTerm,
+  mode
 }: searchProps) => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -48,7 +50,7 @@ const Search = ({
           placeholder={placeHolder}
           onChange={handleInputChange}
           value={searchTerm}
-          className={styles.input}
+          className={`${styles.input} ${styles.secondary}`}
         />
 
         {searchTerm && (
