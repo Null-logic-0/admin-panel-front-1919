@@ -1,0 +1,111 @@
+.tableContainer :global .ant-table-tbody .ant-table-cell {
+    background-color: #0D0D0D;
+    color: #FFFFFF;
+    border: none;
+}
+
+
+.tableContainer :global .ant-table-cell-row-hover {
+    background: #0D0D0D !important;
+}
+
+.tableContainer :global .ant-table-thead .ant-table-cell {
+    background-color: #232323;
+    color: #FFFFFF;
+    font-size: 20px;
+    font-weight: 600;
+    border: none;
+}
+
+.tableContainer :global(.ant-table-wrapper),
+.tableContainer :global(.ant-table),
+.tableContainer :global(.ant-table-container),
+.tableContainer :global(.ant-table-thead > tr > th),
+.tableContainer :global(.ant-table-tbody > tr > td),
+.tableContainer :global(.ant-table-header),
+.tableContainer :global(.ant-table-body),
+.tableContainer :global(.ant-table-content) {
+    border-radius: 0 !important;
+}
+
+.tableContainer :global(.ant-table-wrapper .ant-table-thead > tr:first-child > th:first-child),
+.tableContainer :global(.ant-table-wrapper .ant-table-thead > tr:first-child > th:last-child),
+.tableContainer :global(.ant-table-wrapper .ant-table-tbody > tr:first-child > td:first-child),
+.tableContainer :global(.ant-table-wrapper .ant-table-tbody > tr:first-child > td:last-child) {
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+}
+
+.tableContainer :global(.ant-table-wrapper .ant-table-tbody > tr:last-child > td:first-child),
+.tableContainer :global(.ant-table-wrapper .ant-table-tbody > tr:last-child > td:last-child) {
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
+.tableContainer :global {
+    .ant-table {
+        border: none !important;
+    }
+
+    .ant-table-container,
+    .ant-table-content,
+    .ant-table-header,
+    .ant-table-body,
+    .ant-table-wrapper,
+    .ant-table-footer {
+        border: none !important;
+    }
+
+    .ant-table-thead>tr>th {
+        border: none !important;
+    }
+
+    .ant-table-tbody>tr>td {
+        border: none !important;
+    }
+
+
+    .ant-table-tbody>tr>td:first-child,
+    .ant-table-tbody>tr>td:last-child,
+    .ant-table-thead>tr>th:first-child,
+    .ant-table-thead>tr>th:last-child {
+        border-left: none !important;
+        border-right: none !important;
+        font-size: 20px;
+        font-weight: 600;
+        padding: 24px 16px;
+    }
+
+    .ant-table-thead>tr>th,
+    .ant-table-tbody>tr>td {
+        border-bottom: none !important;
+    }
+
+    .ant-table,
+    .ant-table-container,
+    .ant-table-content,
+    .ant-table-header,
+    .ant-table-body,
+    .ant-table-wrapper,
+    .ant-table-footer {
+        box-shadow: none !important;
+    }
+
+    .ant-table-wrapper .ant-table-tbody>tr>td {
+        transition: none;
+        border-bottom: 1px solid #0D0D0D;
+        background: #0D0D0D;
+    }
+}
+
+.tableContainer :global .ant-table-wrapper .ant-table-thead>tr>th:not(:last-child):not(.ant-table-selection-column):not(.ant-table-row-expand-icon-cell):not([colspan])::before {
+    border: none !important;
+    background-color: #0D0D0D;
+
+}
+
+.text {
+    color: #FFF;
+    font-size: 24px;
+    font-weight: 500;
+}
