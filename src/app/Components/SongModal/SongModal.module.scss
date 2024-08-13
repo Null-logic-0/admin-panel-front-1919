@@ -1,0 +1,32 @@
+@import '../../styles/globalColors/color.scss';
+@import '../../styles/globalBorders/borders.scss';
+.main {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    padding: 24px;
+    justify-content: center;
+    width: 564px;
+    background-color: $darker;
+    border-radius: $medium;
+}
+
+.container {
+    height: 575px;
+    overflow-y: scroll;
+}
+
+.container::-webkit-scrollbar {
+    display: none;
+}
+
+.container {
+  -ms-overflow-style: none; 
+  scrollbar-width: none;  
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
