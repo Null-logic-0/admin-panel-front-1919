@@ -14,8 +14,6 @@ const dataSource: ArtistTableInterFace[] = [
         name: 'User Name',
         albumName:'album name',
         musics: '77',
-        likes:'1000',
-        view: '20000'
     },
     {
         id: 2,
@@ -24,8 +22,6 @@ const dataSource: ArtistTableInterFace[] = [
         name: 'User Name',
         albumName:'album name',
         musics: '77',
-        likes:'1000',
-        view: '20000'
     },
     {
         id: 3,
@@ -34,8 +30,6 @@ const dataSource: ArtistTableInterFace[] = [
         name: 'User Name',
         albumName:'album name',
         musics: '77',
-        likes:'1000',
-        view: '20000'
     },
    
 
@@ -66,22 +60,7 @@ const columns = [
             <span className={styles.text}>{record.musics}</span>
         )
     },
-    {
-        title: 'Likes',
-        dataIndex: 'likes',
-        key: 'likes',
-        render : (text:string, record:ArtistTableInterFace)=>(
-            <span className={styles.text}>{record.likes}</span>
-        )
-    },
-    {
-        title: 'View',
-        dataIndex: 'view',
-        key: 'view',
-        render : (text:string, record:ArtistTableInterFace)=>(
-            <span className={styles.text}>{record.view}</span>
-        )
-    },
+    
     {
         title: 'Actions',
         key: 'actions',

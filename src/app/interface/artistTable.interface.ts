@@ -5,6 +5,5 @@ export interface ArtistTableInterFace {
     name: string;
     albumName: string;
     musics: string;
-    likes: string;
-    view: string;
+    
 }
