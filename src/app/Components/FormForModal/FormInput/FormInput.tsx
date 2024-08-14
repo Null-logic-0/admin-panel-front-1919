@@ -1,5 +1,5 @@
 import React, { forwardRef } from "react";
-import styles from "./FromInput.module.scss";
+import styles from "./FormInput.module.scss";
 
 type Props = {
   type: "text" | "password";

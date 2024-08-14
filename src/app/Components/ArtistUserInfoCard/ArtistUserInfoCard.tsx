@@ -3,16 +3,17 @@ import Image from "next/image";
 
 type Props = {
   image: string;
-  userName: string;
+  firstName: string;
+  lastName:string;
 };
 
-const ArtistUserInfoCard = ({ image, userName}: Props) => {
+const ArtistUserInfoCard = ({ image, firstName,lastName}: Props) => {
   return (
     <div className={styles.container}>
       <Image src={image} width={48} height={48} alt={"Image"} />
 
       <div>
-        <span className={styles.txt}>{userName}</span>
+        <span className={styles.txt}>{ `${firstName} ${lastName}`}</span>
       </div>
     </div>
   );

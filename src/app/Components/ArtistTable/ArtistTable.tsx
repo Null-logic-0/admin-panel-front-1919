@@ -6,84 +6,21 @@ import ArtistUserInfoCard from '../ArtistUserInfoCard/ArtistUserInfoCard';
 import MultiTaskButton from '../MultiTaskButton/MultiTaskButton';
 import { ArtistTableInterFace } from '@/app/interface/artistTable.interface';
 
-
-
-
-const dataSource: ArtistTableInterFace[] = [
-    {
-        id: 1,
-        key: '1',
-        image: '/images/user1.png',
-        name: 'User Name',
-        albumName:'album name',
-        musics: '77',
-    },
-    {
-        id: 2,
-        key: '2',
-        image: '/images/user2.png',
-        name: 'User Name',
-        albumName:'album name',
-        musics: '77',
-    },
-    {
-        id: 3,
-        key: '3',
-        image: '/images/user3.png',
-        name: 'User Name',
-        albumName:'album name',
-        musics: '77',
-    },
-    {
-        id: 4,
-        key: '4',
-        image: '/images/user2.png',
-        name: 'User Name',
-        albumName:'album name',
-        musics: '77',
-    },
-    {
-        id: 5,
-        key: '5',
-        image: '/images/user3.png',
-        name: 'User Name',
-        albumName:'album name',
-        musics: '77',
-    },
-    {
-        id: 6,
-        key: '6',
-        image: '/images/user2.png',
-        name: 'User Name',
-        albumName:'album name',
-        musics: '77',
-    },
-    {
-        id: 7,
-        key: '7',
-        image: '/images/user3.png',
-        name: 'User Name',
-        albumName:'album name',
-        musics: '77',
-    },
-   
-
-];
-
 type tableProps ={
-    remove?:()=>void
-    edit?:()=>void
-}
+    remove?:()=>void;
+    edit?:()=>void;
+    dataSource: ArtistTableInterFace[];
+    
+};
 
-
-const ArtistTable = ({edit, remove}:tableProps) => {
+const ArtistTable = ({edit, remove,dataSource}:tableProps) => {
     const columns = [
         {
             title: 'Name/Image',
             dataIndex: 'name',
             key: 'name',
             render: (text: string, record: ArtistTableInterFace) => (
-                <ArtistUserInfoCard image={record.image} userName={record.name} />
+                <ArtistUserInfoCard image={record.image} firstName={record.firstName} lastName={record.lastName}  />
             ),
         },
         {
@@ -91,7 +28,7 @@ const ArtistTable = ({edit, remove}:tableProps) => {
             dataIndex: 'album',
             key: 'album',
             render : (text:string, record:ArtistTableInterFace)=>(
-                <span className={styles.text}>{record.albumName}</span>
+                <span className={styles.text}>{record.albums}</span>
             )
         },
         {
