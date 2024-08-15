@@ -1,0 +1,53 @@
+@import "../../styles/globalColors/color.scss";
+@import "../../styles/GlobalBorders/borders.scss";
+
+.input {
+  width: 616px;
+  border-radius: $medium;
+  border: 1px solid $dark4;
+  padding: 15px;
+  background-color: transparent;
+  position: relative;
+  color: #FFF;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.input:focus {
+  border: 1px solid $mainColor;
+  outline: none;
+}
+.input:-webkit-autofill,
+.input:-webkit-autofill:hover, 
+.input:-webkit-autofill:focus, 
+.input:-webkit-autofill:active{
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: #fff;
+    transition: background-color none;
+    box-shadow: none;
+}
+.container {
+  position: relative;
+  display: flex;
+}
+
+.label {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+
+@media (max-width: 768px) {
+  .input {
+    width: 300px;
+  }
+
+  .label {
+    font-size: 16px;
+  }
+
+  .inputWrapper {
+    gap: 8px;
+  }
+}
