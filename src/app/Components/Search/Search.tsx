@@ -2,6 +2,7 @@ import { useState } from "react";
 import styles from "./Search.module.scss";
 import Image from "next/image";
 import CloseButton from "../CloseButton/CloseButton";
+import classNames from "classnames/bind";
 
 type searchProps = {
   icon?: boolean;
@@ -9,7 +10,7 @@ type searchProps = {
   onchange?: (value: string) => void;
   setSearchTerm: (value: string) => void;
   searchTerm: string;
-  mode?:'secondary';
+  mode?: 'secondary';
 };
 const Search = ({
   icon,
@@ -18,6 +19,7 @@ const Search = ({
   setSearchTerm,
   searchTerm,
   mode
+
 }: searchProps) => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -33,6 +35,9 @@ const Search = ({
       onchange("");
     }
   };
+  const classNames = [styles.input];
+
+  if (mode == 'secondary') classNames.push(styles.secondary);
   return (
     <div className={styles.container}>
       <div className={styles.inputWrapper}>
@@ -50,7 +55,7 @@ const Search = ({
           placeholder={placeHolder}
           onChange={handleInputChange}
           value={searchTerm}
-          className={`${styles.input} ${styles.secondary}`}
+          className={classNames.join(' ').trim()}
         />
 
         {searchTerm && (

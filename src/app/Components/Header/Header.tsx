@@ -4,6 +4,8 @@ import styles from './Header.module.scss';
 import Button from '../Button/Button';
 import Image from 'next/image';
 import MultiTaskButton from '../MultiTaskButton/MultiTaskButton';
+import ConfirmModal from '../ConfirmModal/ConfirmModal';
+import Modal from '../Modal/Modal';
 
 const Header = () => {
     const [showDetails, setShowDetails] = useState(false);
@@ -12,25 +14,18 @@ const Header = () => {
         setShowDetails(!showDetails)
     }
 
+    const handleClose =()=>{
+        setShowDetails(false)
+    }
+
     return (
         <div className={styles.main}>
             <MultiTaskButton icon={'/Icons/Logout.svg'}  onclick={handleOpen}/>
             {
                 showDetails &&
-                <div className={styles.container}>
-                    <p className={styles.text}>Do you want to Log-Out?</p>
-                    <div className={styles.buttonsContainer}>
-
-                        <div className={styles.button}>
-                            <Button title='Yes' />
-                        </div>
-                        <div className={styles.button}>
-                            <Button title='NO' mode='secondary' onclick={handleOpen} />
-                        </div>
-
-                    </div>
-
-                </div>
+                <Modal setShowModal={handleOpen} >
+                    <ConfirmModal text={'Do you want to Log-out?'} onclose={handleClose}/>
+                </Modal>
 
             }
         </div>
