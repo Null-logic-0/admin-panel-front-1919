@@ -10,7 +10,7 @@ const linksData = [
   { key: 'user', href: "/user", title: "User", iconSrc: '/icons/user.svg' },
   { key: 'Playlist', href: "/playlist", title: "Playlist", iconSrc: '/icons/playlists.svg' },
   { key: 'album', href: "/album", title: "Album", iconSrc: '/icons/albums.svg' },
-  { key: 'music', href: "/music", title: "Music", iconSrc: '/icons/musics.svg' },
+  { key: 'music', href: "/musicpage", title: "Music", iconSrc: '/icons/musics.svg' },
 ];
 
 const Navigation = () => {
