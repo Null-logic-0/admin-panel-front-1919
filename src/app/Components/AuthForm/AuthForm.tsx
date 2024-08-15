@@ -24,7 +24,7 @@ const AuthForm = () => {
                 <div className={styles.inputs}>
                     <Input
                         type='email'
-                        text='Enter your E-mail?'
+                        text='Enter your E-mail'
                         className={classNames({ [styles.inputError]: errors.email })}
                         {...register('email', {
                             required: 'E-mail is required',
