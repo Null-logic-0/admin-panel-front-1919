@@ -1,0 +1,74 @@
+@import '../../styles/globalColors/color.scss';
+
+.main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 58px;
+    padding: 30px 24px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 42px;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+}
+
+.logo,
+.subtitle,
+.title {
+    color: #fff;
+}
+
+.title {
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.subtitle {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.inputError {
+    border: 1px solid $error;
+}
+
+.error {
+    color: $error;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.container {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.button {
+    display: flex;
+    justify-content: center;
+    width: 359px;
+}
