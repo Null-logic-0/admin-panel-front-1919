@@ -104,7 +104,7 @@ const ArtistForm = ({ setShowModal }: FormProps) => {
       </div>
 
       <div className={styles.button}>
-        <Button title={'Edit'} />
+        <Button title={'add'} />
       </div>
     </form>
   );
