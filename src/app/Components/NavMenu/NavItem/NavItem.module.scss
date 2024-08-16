@@ -8,13 +8,14 @@
 
 .navLink {
     color: #FFF;
-    font-family: Inter;
     font-size: 20px;
     font-weight: 500;
     line-height: 28px;
     display: flex;
-    align-items: center;
     gap: 12px;
+    align-items: center;
+    padding: 12px 8px;
+
 }
 
 .navLink:hover {
