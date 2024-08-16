@@ -8,7 +8,7 @@ import NavItem from "../NavItem/NavItem";
 const linksData = [
   { key: 'home', href: "/", title: "Artist", iconSrc: '/icons/favourite.svg' },
   { key: 'user', href: "/userpage", title: "User", iconSrc: '/icons/user.svg' },
-  { key: 'Playlist', href: "/playlist", title: "Playlist", iconSrc: '/icons/playlists.svg' },
+  { key: 'Playlist', href: "/playlistpage", title: "Playlist", iconSrc: '/icons/playlists.svg' },
   { key: 'album', href: "/albumpage", title: "Album", iconSrc: '/icons/albums.svg' },
   { key: 'music', href: "/musicpage", title: "Music", iconSrc: '/icons/musics.svg' },
 ];
