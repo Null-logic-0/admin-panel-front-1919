@@ -4,13 +4,21 @@ import Image from 'next/image';
 
 type dropDownProps = {
     options: dropDownOptions[];
+    onOptionSelect: () => void;
 }
 
-const Dropdown = ({ options}: dropDownProps) => {
+const Dropdown = ({ options, onOptionSelect }: dropDownProps) => {
     return (
         <div className={styles.container}>
-            {options.map((option,index) => (
-                <button  key={index} onClick={option.onclick} className={styles.button}>
+            {options.map((option) => (
+                <button key={option.id}
+                    onClick={() => {
+                        if (option.onclick) {
+                            option.onclick();
+                        }
+                        onOptionSelect();
+                    }}
+                    className={styles.button}>
                     <Image src={option.icon} alt='icon' width={24} height={24} />
                     {option.title}
                 </button>
