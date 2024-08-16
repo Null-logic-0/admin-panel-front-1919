@@ -1,5 +1,5 @@
 .tableContainer :global .ant-table-tbody .ant-table-cell {
-    background-color: #232323;
+    background-color:#0D0D0D;
     color: #FFFFFF;
     border: none;
 }
@@ -7,11 +7,11 @@
 
 
 .tableContainer :global .ant-table-cell-row-hover {
-    background:#232323 !important;
+    background:#0D0D0D !important;
 }
 
 .tableContainer :global .ant-table-thead .ant-table-cell {
-    background-color:#232323;
+    background-color:#0D0D0D;
     color: #FFFFFF;
     font-size: 24px;
     font-weight: 500;
@@ -92,14 +92,14 @@
 
     .ant-table-wrapper .ant-table-tbody>tr>td {
         transition: none;
-        border-bottom: 1px solid #232323;
-        background: #232323;
+        border-bottom: 1px solid #0D0D0D;
+        background: #0D0D0D;
     }
 }
 
 .tableContainer :global .ant-table-wrapper .ant-table-thead>tr>th:not(:last-child):not(.ant-table-selection-column):not(.ant-table-row-expand-icon-cell):not([colspan])::before {
     border: none !important;
-    background-color:#232323;
+    background-color:#0D0D0D;
 
 }
 

@@ -75,11 +75,13 @@ const User = () => {
             icon: '/Icons/block.svg',
             title: 'Block User',
             onclick: openBlockModal,
+            id: 1
         },
         {
             icon: '/Icons/Edit.svg',
             title: 'Change Password',
             onclick: openChangePassword,
+            id: 2
         },
     ];
 

@@ -7,17 +7,15 @@ import Search from '../Search/Search';
 import MultiTaskButton from '../MultiTaskButton/MultiTaskButton';
 
 type modalProps = {
-    onClose?:()=>void
+    setShowModal: (value: boolean) => void;
 }
 
-const SongModal = ({onClose}:modalProps) =>{
+const SongModal = ({setShowModal}:modalProps) =>{
     const [searchTerm, setSearchTerm] = useState('');
     return (
         <div className={styles.main}>
-            <div className={styles.button}>
-                <MultiTaskButton icon={'/Icons/closeX.svg'} onclick={onClose} />
-            </div>
-            <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} placeHolder={'search songs...'} mode='secondary' />
+        
+            <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} placeHolder={'search songs...'} />
             <div className={styles.container}>
                 <SongTable/>
             </div>
