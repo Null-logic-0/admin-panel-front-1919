@@ -1,4 +1,4 @@
-import Music from "@/app/Components/Musicc/Music";
+import Music from "@/app/Components/Music/Music";
 import styles from "./page.module.css";
 
 

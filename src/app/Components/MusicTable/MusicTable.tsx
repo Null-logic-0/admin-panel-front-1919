@@ -10,9 +10,11 @@ import { musicTableInterface } from '@/app/interface/musicTable.interface';
 
 type tableProps = {
     dataSource:musicTableInterface[];
+    edit?:()=>void;
+    remove?:()=>void;
 }
 
-const MusicTable = ({dataSource}:tableProps) => {
+const MusicTable = ({dataSource,edit,remove}:tableProps) => {
     const columns = [
         {
             title: 'Music Name',
@@ -47,8 +49,8 @@ const MusicTable = ({dataSource}:tableProps) => {
             
             render: (text: string, record: musicTableInterface) => (
                 <Space size="middle">
-                    <MultiTaskButton icon={'/Icons/trash.svg'} />
-                    <MultiTaskButton icon={'/Icons/pen.svg'} />
+                    <MultiTaskButton icon={'/Icons/pen.svg'} onclick={edit}/>
+                    <MultiTaskButton icon={'/Icons/trash.svg'} onclick={remove}/>
                 </Space>
             ),
         },
