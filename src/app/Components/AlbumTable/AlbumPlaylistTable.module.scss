@@ -109,3 +109,16 @@
     font-size: 24px;
     font-weight: 500;
 }
+
+
+.dropdownContainer {
+    position: relative;
+    display: inline-block; 
+}
+
+
+.dropdown {
+    position: absolute;
+    right: 10px; 
+    z-index: 10;
+}
