@@ -44,7 +44,7 @@ const UserTable = ({ dataSource, remove,dropdownOptions}: userTableProps) => {
         {
             title: 'Actions',
             key: 'actions',
-            render: (text: any, record: UserTableInterFace) => (
+            render: (text: string, record: UserTableInterFace) => (
                 <Space size='middle'>
                     <div className={styles.dropdownContainer}>
                         <div className={styles.button}>

@@ -10,8 +10,8 @@ type dropDownProps = {
 const Dropdown = ({ options, onOptionSelect }: dropDownProps) => {
     return (
         <div className={styles.container}>
-            {options.map((option, index) => (
-                <button key={index}
+            {options.map((option) => (
+                <button key={option.id}
                     onClick={() => {
                         if (option.onclick) {
                             option.onclick();
