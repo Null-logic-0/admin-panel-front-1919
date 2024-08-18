@@ -4,7 +4,7 @@ import Input from '../Input/Input';
 import styles from './AuthForm.module.scss';
 import { useForm } from 'react-hook-form';
 import Button from '../Button/Button';
-import Link from 'next/link';
+import Image from 'next/image';
 import { loginFormInterface } from '@/app/interface/Login.interface';
 
 
@@ -16,7 +16,7 @@ const AuthForm = () => {
     }
     return (
         <div className={styles.main}>
-            <h1 className={styles.logo}>TnNdshN</h1>
+            <Image src={'/Icons/Logo.svg'} alt='logo' width={100} height={105}/>
             <p className={styles.title}>Login in to TnNdshN Admin Panel</p>
 
 

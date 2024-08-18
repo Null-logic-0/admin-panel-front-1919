@@ -3,6 +3,7 @@ import React from "react";
 import { usePathname } from "next/navigation";
 import styles from "./Navigation.module.scss";
 import NavItem from "../NavItem/NavItem";
+import Image from "next/image";
 
 
 const linksData = [
@@ -18,8 +19,7 @@ const Navigation = () => {
 
   return (
     <div className={styles.main}>
-      <h1 className={styles.logo}>TnNdshN</h1>
-
+      <Image src={'/Icons/Logo.svg'} alt="logo" width={70} height={75}/>
       <div className={styles.container}>
 
         <ul className={styles.navList}>
