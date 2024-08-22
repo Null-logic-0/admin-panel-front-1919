@@ -97,7 +97,7 @@ const User = () => {
             {
                 showDeleteModal && (
                     <Modal setShowModal={handleShow}>
-                        <ConfirmModal text={'Do you want to delte User?'} onclose={handleClose} />
+                        <ConfirmModal text={'Do you want to delete User?'} onclose={handleClose} />
                     </Modal>
                 )
             }
