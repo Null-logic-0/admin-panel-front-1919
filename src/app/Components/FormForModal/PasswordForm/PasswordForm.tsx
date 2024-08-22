@@ -44,7 +44,7 @@ const PasswordForm = ({setShowModal}:FormProps) => {
                 {errors.passwordRepeat && <span className={styles.error}>{errors.passwordRepeat.message}</span>}
             <div className={styles.button}>
 
-                <Button title='Sign in' />
+                <Button title='reset password' />
 
             </div>
 
