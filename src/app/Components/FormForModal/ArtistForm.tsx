@@ -54,7 +54,7 @@ const ArtistForm = ({ setShowModal }: FormProps) => {
           </div>
           <div className={styles.upload}>
             <label htmlFor="fileInput" className={styles.label}>
-              <Image src={'/icons/pluss.png'} width={63} height={63} alt="icon" />
+              <Image src={'/Icons/pluss.png'} width={63} height={63} alt="icon" />
             </label>
             <input
               type="file"

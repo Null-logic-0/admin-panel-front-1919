@@ -17,7 +17,7 @@ const dataSource: albumPlaylistTableInterface[] = [
     {
         id: 1,
         key: '1',
-        image: '/images/CardIMG.png',
+        image: '/Images/CardIMG.png',
         playlistName: 'playlsitName',
         artistName: "artistName",
         songs: '34'
@@ -25,7 +25,7 @@ const dataSource: albumPlaylistTableInterface[] = [
     {
         id: 2,
         key: '2',
-        image: '/images/CardIMG.png',
+        image: '/Images/CardIMG.png',
         playlistName: 'playlistName',
         artistName: "artistName",
         songs: '34'
@@ -33,7 +33,7 @@ const dataSource: albumPlaylistTableInterface[] = [
     {
         id: 3,
         key: '3',
-        image: '/images/CardIMG.png',
+        image: '/Images/CardIMG.png',
         playlistName: 'palylsitName',
         artistName: "artistName",
         songs: '34'
@@ -41,7 +41,7 @@ const dataSource: albumPlaylistTableInterface[] = [
     {
         id: 4,
         key: '4',
-        image: '/images/CardIMG.png',
+        image: '/Images/CardIMG.png',
         playlistName: 'playlistName',
         artistName: "artistName",
         songs: '34'
@@ -49,7 +49,7 @@ const dataSource: albumPlaylistTableInterface[] = [
     {
         id: 5,
         key: '5',
-        image: '/images/CardIMG.png',
+        image: '/Images/CardIMG.png',
         playlistName: 'playlistName',
         artistName: "artistName",
         songs: '34'
@@ -57,7 +57,7 @@ const dataSource: albumPlaylistTableInterface[] = [
     {
         id: 6,
         key: '6',
-        image: '/images/CardIMG.png',
+        image: '/Images/CardIMG.png',
         playlistName: 'playlistName',
         artistName: "artistName",
         songs: '34'
@@ -65,7 +65,7 @@ const dataSource: albumPlaylistTableInterface[] = [
     {
         id: 7,
         key: '7',
-        image: '/images/CardIMG.png',
+        image: '/Images/CardIMG.png',
         playlistName: 'playlistName',
         artistName: "artistName",
         songs: '34'

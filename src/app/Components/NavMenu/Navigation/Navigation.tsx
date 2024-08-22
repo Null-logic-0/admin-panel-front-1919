@@ -7,11 +7,11 @@ import Image from "next/image";
 
 
 const linksData = [
-  { key: 'home', href: "/", title: "Artist", iconSrc: '/icons/favourite.svg' },
-  { key: 'user', href: "/users", title: "User", iconSrc: '/icons/user.svg' },
-  { key: 'Playlist', href: "/playlists", title: "Playlist", iconSrc: '/icons/playlists.svg' },
-  { key: 'album', href: "/albums", title: "Album", iconSrc: '/icons/albums.svg' },
-  { key: 'music', href: "/musics", title: "Music", iconSrc: '/icons/musics.svg' },
+  { key: 'home', href: "/", title: "Artist", iconSrc: '/Icons/favourite.svg' },
+  { key: 'user', href: "/users", title: "User", iconSrc: '/Icons/user.svg' },
+  { key: 'Playlist', href: "/playlists", title: "Playlist", iconSrc: '/Icons/playlists.svg' },
+  { key: 'album', href: "/albums", title: "Album", iconSrc: '/Icons/albums.svg' },
+  { key: 'music', href: "/musics", title: "Music", iconSrc: '/Icons/musics.svg' },
 ];
 
 const Navigation = () => {

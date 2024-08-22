@@ -79,7 +79,7 @@ const MusicForm = ({ setShowModal }: FormProps) => {
                         </div>
                         <div className={styles.upload}>
                             <label htmlFor="imageInput" className={styles.label}>
-                                <Image src={'/icons/pluss.png'} width={60} height={60} alt="icon" />
+                                <Image src={'/Icons/pluss.png'} width={60} height={60} alt="icon" />
                             </label>
                             <input
                                 type="file"
@@ -101,7 +101,7 @@ const MusicForm = ({ setShowModal }: FormProps) => {
                         </div>
                         <div className={styles.upload}>
                             <label htmlFor="musicInput" className={styles.label}>
-                                <Image src={'/icons/addMusic.svg'} width={60} height={60} alt="icon" />
+                                <Image src={'/Icons/addMusic.svg'} width={60} height={60} alt="icon" />
                             </label>
                             <input
                                 type="file"

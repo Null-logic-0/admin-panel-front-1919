@@ -13,7 +13,7 @@ const dataSource: musicTableInterface[] = [
     {
         id: 1,
         key: '1',
-        image: '/images/CardIMG.png',
+        image: '/Images/CardIMG.png',
         playlistName: 'Name',
         artistName: "lastName",
         view: '1',
@@ -22,7 +22,7 @@ const dataSource: musicTableInterface[] = [
     {
         id: 2,
         key: '2',
-        image: '/images/CardIMG.png',
+        image: '/Images/CardIMG.png',
         playlistName: 'Name',
         artistName: "lastName",
         view: '1',
@@ -31,7 +31,7 @@ const dataSource: musicTableInterface[] = [
     {
         id: 3,
         key: '3',
-        image: '/images/CardIMG.png',
+        image: '/Images/CardIMG.png',
         playlistName: 'Name',
         artistName: "lastName",
         view: '1',

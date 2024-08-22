@@ -20,7 +20,7 @@ const Modal = ({ children,setShowModal }: ModalProps) => {
             <div className={styles.container}>
                 <div className={styles.header} >
                     
-                    <MultiTaskButton onclick={handleCloseModal} icon={'/icons/close.svg'}/>
+                    <MultiTaskButton onclick={handleCloseModal} icon={'/Icons/close.svg'}/>
 
                 </div>
 
