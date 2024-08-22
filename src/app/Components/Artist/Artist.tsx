@@ -13,7 +13,7 @@ const dataSource: ArtistTableInterFace[] = [
     {
         id: 1,
         key: '1',
-        image: '/images/user1.png',
+        image: '/Images/user1.png',
         musics: '77',
         firstName: 'Name',
         lastName: "lastName",
@@ -22,7 +22,7 @@ const dataSource: ArtistTableInterFace[] = [
     {
         id: 2,
         key: '2',
-        image: '/images/user2.png',
+        image: '/Images/user2.png',
         firstName: 'Name',
         lastName: "lastName",
         albums: '4',
@@ -31,7 +31,7 @@ const dataSource: ArtistTableInterFace[] = [
     {
         id: 3,
         key: '3',
-        image: '/images/user3.png',
+        image: '/Images/user3.png',
         firstName: 'Name',
         lastName: "lastName",
         albums: '2',
@@ -40,7 +40,7 @@ const dataSource: ArtistTableInterFace[] = [
     {
         id: 4,
         key: '4',
-        image: '/images/user2.png',
+        image: '/Images/user2.png',
         firstName: 'Name',
         lastName: "lastName",
         albums: '14',
@@ -49,7 +49,7 @@ const dataSource: ArtistTableInterFace[] = [
     {
         id: 5,
         key: '5',
-        image: '/images/user3.png',
+        image: '/Images/user3.png',
         firstName: 'Name',
         lastName: "lastName",
         albums: '4',
@@ -58,7 +58,7 @@ const dataSource: ArtistTableInterFace[] = [
     {
         id: 6,
         key: '6',
-        image: '/images/user2.png',
+        image: '/Images/user2.png',
         firstName: 'Name',
         lastName: "lastName",
         albums: '3',
@@ -67,7 +67,7 @@ const dataSource: ArtistTableInterFace[] = [
     {
         id: 7,
         key: '7',
-        image: '/images/user3.png',
+        image: '/Images/user3.png',
         firstName: 'Name',
         lastName: "lastName",
         albums: '4',

@@ -120,7 +120,7 @@ const Artist = () => {
     return (
         <>
             <div className={styles.container}>
-                <MultiTaskButton icon={'/Icons/Playlist.svg'} title='Add Playlist' onclick={openAddPlaylistModal}/>
+                <MultiTaskButton icon={'/Icons/PLaylist.svg'} title='Add Playlist' onclick={openAddPlaylistModal}/>
                 <Search placeHolder='Search for Playlist' searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
             </div>
             <AlbumPlaylistTable dataSource={dataSource} title={'PLaylist Name'} dropdownOptions={dropdownOptions} remove={handleShow} />

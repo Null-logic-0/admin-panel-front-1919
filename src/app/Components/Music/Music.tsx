@@ -67,7 +67,7 @@ const Music = () => {
     return (
         <>
             <div className={styles.container}>
-                <MultiTaskButton icon={'/Icons/AddSongs.svg'} title='Add Songs' onclick={addMusicModal} />
+                <MultiTaskButton icon={'/Icons/addSongs.svg'} title='Add Songs' onclick={addMusicModal} />
                 <Search placeHolder='Search for Music' searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
             </div>
             <MusicTable dataSource={dataSource} remove={handleShow} edit={openEditModal}/>
