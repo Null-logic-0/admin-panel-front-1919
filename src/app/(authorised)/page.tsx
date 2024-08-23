@@ -1,12 +1,16 @@
 import Artist from "../Components/Artist/Artist";
+import AuthGuard from "../Components/AuthGuard/AuthGuard";
 import styles from "./page.module.css";
 
 
 export default function Home() {
 
-    return (
-        <main>
-          <Artist />
-        </main>
-    );
+  return (
+    <AuthGuard>
+      <main>
+        <Artist />
+      </main>
+    </AuthGuard>
+
+  );
 }
