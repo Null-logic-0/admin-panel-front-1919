@@ -1,12 +1,14 @@
+import { ReactNode } from 'react';
 import styles from './Button.module.scss';
 
 type buttonProps = {
-    title: string;
+    title: ReactNode;
     mode?: 'secondary';
     onclick?: () => void;
+    disabled?:boolean;
 }
 
-const Button = ({ title, mode, onclick }: buttonProps) => {
+const Button = ({ title, mode, onclick,disabled }: buttonProps) => {
     const classNames = [styles.button];
 
     if (mode == 'secondary') classNames.push(styles.secondary);
