@@ -1,7 +1,7 @@
 export interface ArtistTableInterFace {
     id: number;
     key: string;
-    image: string;
+    image: object;
     firstName: string;
     lastName:string;
     albums: string;

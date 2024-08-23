@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import Image from 'next/image';
 import styles from './ArtistForm.module.scss';
@@ -7,38 +7,82 @@ import Button from '../Button/Button';
 import FormInput from './FormInput/FormInput';
 import classNames from 'classnames';
 import { useState } from 'react';
+import axios from 'axios';
+import { ArtistTableInterFace } from '@/app/interface/artistTable.interface';
 
 type FormProps = {
   setShowModal: (value: boolean) => void;
-}
+  addNewArtist?: (newArtist: ArtistTableInterFace) => void;
+};
 
-const ArtistForm = ({ setShowModal }: FormProps) => {
+const MAX_FILE_SIZE = 5 * 1024 * 1024;
+
+const ArtistForm = ({ setShowModal, addNewArtist }: FormProps) => {
   const { register, handleSubmit, setValue, formState: { errors } } = useForm<FormDataInterface>();
   const [imageUploaded, setImageUploaded] = useState<boolean>(false);
 
-  const toBase64 = (file: File): Promise<string> =>
-    new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result as string);
-      reader.onerror = error => reject(error);
-    });
-
-  const onSubmit: SubmitHandler<FormDataInterface> = async (data) => {
-    const formData = {
-      img: data.img,
-      playlistName: data.playlistName,
-      description: data.description,
-    };
-    setShowModal(false);
-    console.log('Form Data:', formData);
-  };
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      const base64 = await toBase64(e.target.files[0]);
-      setValue('img', base64);
-      setImageUploaded(true);
+
+      const file = e.target.files[0];
+
+      if (file.size > MAX_FILE_SIZE) {
+        alert('File is too large. Maximum allowed size is 5 MB.');
+        return;
+      }
+
+      try {
+        setValue('img', file);
+        setImageUploaded(true);
+      } catch (error) {
+        console.error('Error compressing image:', error);
+      }
+    }
+  };
+
+  const onSubmit: SubmitHandler<FormDataInterface> = async (data) => {
+    try {
+      const formData = new FormData();
+      if (data.img) {
+        formData.append('img', data.img as File);
+      }
+
+      formData.append('firstName', data.firstName || '');
+      formData.append('lastName', data.lastName || '');
+      formData.append('biography', data.biography || '');
+
+
+
+      const token = localStorage.getItem('accesstoken');
+
+      if (!token) {
+        console.error('No token found in localStorage');
+        return;
+      }
+      console.log(formData, 'formdata')
+      const response = await axios.post('https://one919-backend.onrender.com/author', formData, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'multipart/form-data',
+        }
+      });
+
+
+      const newArtist: ArtistTableInterFace = {
+        id: response.data.id, 
+        key: response.data.id.toString(),
+        image: response.data.img, 
+        firstName: response.data.firstName,
+        lastName: response.data.lastName,
+        albums: '0', 
+        musics: '0'  
+      };
+
+      addNewArtist?.(newArtist);
+      setShowModal(false);
+    } catch (error) {
+      console.error('Error submitting form:', error);
     }
   };
 
@@ -80,7 +124,6 @@ const ArtistForm = ({ setShowModal }: FormProps) => {
               className={classNames({ [styles.error]: errors.firstName })}
             />
             {errors.firstName && <span className={styles.errorMessage}>{errors.firstName.message}</span>}
-
           </div>
 
           <div className={styles.errorContainer}>
@@ -97,15 +140,13 @@ const ArtistForm = ({ setShowModal }: FormProps) => {
               className={classNames({ [styles.error]: errors.lastName })}
             />
             {errors.lastName && <span className={styles.errorMessage}>{errors.lastName.message}</span>}
-
           </div>
-
         </div>
       </div>
-      <div className={styles.errorContainer}>
 
+      <div className={styles.errorContainer}>
         <textarea
-          {...register('description', {
+          {...register('biography', {
             required: 'Description is required',
             minLength: {
               value: 80,
@@ -113,12 +154,10 @@ const ArtistForm = ({ setShowModal }: FormProps) => {
             },
           })}
           placeholder="About..."
-          className={classNames(styles.textarea, { [styles.error]: errors.description })}
+          className={classNames(styles.textarea, { [styles.error]: errors.biography })}
         />
-        {errors.description && <span className={styles.errorMessage}>{errors.description.message}</span>}
-
+        {errors.biography && <span className={styles.errorMessage}>{errors.biography.message}</span>}
       </div>
-
 
       <div className={styles.button}>
         <Button title={'Add'} />
