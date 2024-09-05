@@ -1,142 +1,81 @@
-'use client'
-import { useState } from 'react';
-import ArtistTable from '../ArtistTable/ArtistTable';
-import MultiTaskButton from '../MultiTaskButton/MultiTaskButton';
-import Search from '../Search/Search';
-import styles from './Artist.module.scss'
-import ConfirmModal from '../ConfirmModal/ConfirmModal';
-import Modal from '../Modal/Modal';
-import ArtistForm from '../FormForModal/ArtistForm';
-import { ArtistTableInterFace } from '@/app/interface/artistTable.interface';
+"use client";
+import { useState } from "react";
+import ArtistTable from "../ArtistTable/ArtistTable";
+import MultiTaskButton from "../MultiTaskButton/MultiTaskButton";
+import Search from "../Search/Search";
+import styles from "./Artist.module.scss";
+import Modal from "../Modal/Modal";
+import ArtistForm from "../FormForModal/ArtistForm";
+import { ArtistTableInterFace } from "@/app/interface/artistTable.interface";
+import axios from "axios";
 
-const dataSource: ArtistTableInterFace[] = [
-    {
-        id: 1,
-        key: '1',
-        image: '/Images/user1.png',
-        musics: '77',
-        firstName: 'Name',
-        lastName: "lastName",
-        albums: '34'
-    },
-    {
-        id: 2,
-        key: '2',
-        image: '/Images/user2.png',
-        firstName: 'Name',
-        lastName: "lastName",
-        albums: '4',
-        musics: '77',
-    },
-    {
-        id: 3,
-        key: '3',
-        image: '/Images/user3.png',
-        firstName: 'Name',
-        lastName: "lastName",
-        albums: '2',
-        musics: '77',
-    },
-    {
-        id: 4,
-        key: '4',
-        image: '/Images/user2.png',
-        firstName: 'Name',
-        lastName: "lastName",
-        albums: '14',
-        musics: '77',
-    },
-    {
-        id: 5,
-        key: '5',
-        image: '/Images/user3.png',
-        firstName: 'Name',
-        lastName: "lastName",
-        albums: '4',
-        musics: '77',
-    },
-    {
-        id: 6,
-        key: '6',
-        image: '/Images/user2.png',
-        firstName: 'Name',
-        lastName: "lastName",
-        albums: '3',
-        musics: '77',
-    },
-    {
-        id: 7,
-        key: '7',
-        image: '/Images/user3.png',
-        firstName: 'Name',
-        lastName: "lastName",
-        albums: '4',
-        musics: '77',
-    },
-
-
-];
+const initialDataSource: ArtistTableInterFace[] = [];
 
 const Artist = () => {
-    const [searchTerm, setSearchTerm] = useState('');
-    const [showDeleteModal, setShowDeleteModal] = useState(false);
-    const [showModal, setShowModal] = useState(false)
-    const [showEditModal, setShowEditModal] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [dataSource, setDataSource] =
+    useState<ArtistTableInterFace[]>(initialDataSource);
 
-    const handleShow = () => {
-        setShowDeleteModal(!showDeleteModal)
-    }
+  const openArtistForm = () => {
+    setShowModal(!showModal);
+  };
 
-    const handleClose = () => {
-        setShowDeleteModal(false)
-    }
+  const addNewArtist = (newArtist: ArtistTableInterFace) => {
+    setDataSource((prevDataSource) => [...prevDataSource, newArtist]);
+  };
 
-    const openArtistForm = () => {
-        setShowModal(!showModal)
-    }
+  const updateArtist = (updatedArtist: ArtistTableInterFace) => {
+    setDataSource((prevDataSource) =>
+      prevDataSource.map((artist) =>
+        artist.id === updatedArtist.id ? updatedArtist : artist
+      )
+    );
+  };
 
-    const openEditForm = () => {
-        setShowEditModal(!showEditModal)
-    }
+  const handleSearch = () => {
+    axios
+      .get(`https://one919-backend.onrender.com/search/q=${searchTerm}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
+        },
+      })
+      .then((response) => {
+        setDataSource(response.data);
+      })
+      .catch((error) => {
+        console.error("Error searching for artists:", error);
+      });
+  };
 
+  return (
+    <>
+      <div className={styles.container}>
+        <MultiTaskButton
+          icon={"/Icons/melody.svg"}
+          title="Add Artist"
+          onclick={openArtistForm}
+        />
+        <Search
+          placeHolder="Search for Artist"
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          onSearch={handleSearch}
+        />
+      </div>
+      <ArtistTable searchTerm={searchTerm} />
 
-    return (
-        <>
-            <div className={styles.container}>
-                <MultiTaskButton icon={'/Icons/melody.svg'} title='Add Artist' onclick={openArtistForm} />
-                <Search placeHolder='Search for Artist' searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-            </div>
-            <ArtistTable remove={handleShow} edit={openEditForm} dataSource={dataSource} />
-
-            {
-                showDeleteModal && (
-                    <Modal setShowModal={handleShow} >
-                        <ConfirmModal text={'Do you want to delte an Artist?'} onclose={handleClose} />
-                    </Modal>
-                )
-            }
-
-            {
-                showModal && (
-                    <Modal setShowModal={openArtistForm}>
-                        <ArtistForm setShowModal={openArtistForm} />
-                    </Modal>
-                )
-
-            }
-
-            {
-                showEditModal && (
-                    <Modal setShowModal={openEditForm}>
-                        <ArtistForm setShowModal={openEditForm} />
-                    </Modal>
-                )
-
-            }
-
-        </>
-
-    )
-}
+      {showModal && (
+        <Modal setShowModal={openArtistForm}>
+          <ArtistForm
+            setShowModal={openArtistForm}
+            addNewArtist={addNewArtist}
+            updateArtist={updateArtist}
+          />
+        </Modal>
+      )}
+    </>
+  );
+};
 
 export default Artist;

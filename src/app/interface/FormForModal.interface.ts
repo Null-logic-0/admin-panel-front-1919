@@ -1,7 +1,7 @@
 export interface FormDataInterface {
-    img: string;
+    photo: object;
     playlistName: string;
-    description?: string;
+    biography?: string;
     musicName?:string;
     firstName?:string;
     lastName?:string;

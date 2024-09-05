@@ -2,7 +2,6 @@ import { useState } from "react";
 import styles from "./Search.module.scss";
 import Image from "next/image";
 import CloseButton from "../CloseButton/CloseButton";
-import classNames from "classnames/bind";
 
 type searchProps = {
   icon?: boolean;
@@ -10,16 +9,18 @@ type searchProps = {
   onchange?: (value: string) => void;
   setSearchTerm: (value: string) => void;
   searchTerm: string;
+  onSearch: () => void; 
   mode?: 'secondary';
 };
+
 const Search = ({
   icon,
   placeHolder,
   onchange,
   setSearchTerm,
   searchTerm,
+  onSearch, 
   mode
-
 }: searchProps) => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -29,15 +30,22 @@ const Search = ({
     }
   };
 
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      onSearch(); 
+    }
+  };
+
   const clearInput = () => {
     setSearchTerm("");
     if (onchange) {
       onchange("");
     }
   };
-  const classNames = [styles.input];
 
-  if (mode == 'secondary') classNames.push(styles.secondary);
+  const inputClassNames = [styles.input];
+  if (mode === 'secondary') inputClassNames.push(styles.secondary);
+
   return (
     <div className={styles.container}>
       <div className={styles.inputWrapper}>
@@ -54,8 +62,9 @@ const Search = ({
           type="text"
           placeholder={placeHolder}
           onChange={handleInputChange}
+          onKeyPress={handleKeyPress} 
           value={searchTerm}
-          className={classNames.join(' ').trim()}
+          className={inputClassNames.join(' ').trim()}
         />
 
         {searchTerm && (

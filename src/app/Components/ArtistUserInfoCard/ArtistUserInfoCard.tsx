@@ -10,7 +10,7 @@ type Props = {
 const ArtistUserInfoCard = ({ image, firstName,lastName}: Props) => {
   return (
     <div className={styles.container}>
-      <Image src={image} width={48} height={48} alt={"Image"} />
+      <img src={image} width={48} height={48} alt={"Image"} className={styles.img}/>
 
       <div>
         <span className={styles.txt}>{ `${firstName} ${lastName}`}</span>
