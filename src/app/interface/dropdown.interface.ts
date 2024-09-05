@@ -1,6 +1,6 @@
 export interface dropDownOptions{
     icon: string;
     title: string;
-    onclick?: () => void;
+    onclick?: (id:number) => void;
     id:number;
 }
