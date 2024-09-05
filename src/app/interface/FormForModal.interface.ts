@@ -1,5 +1,5 @@
 export interface FormDataInterface {
-    img: object;
+    photo: object;
     playlistName: string;
     biography?: string;
     musicName?:string;

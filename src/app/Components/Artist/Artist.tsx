@@ -1,82 +1,81 @@
-'use client'
-import { useState } from 'react';
-import ArtistTable from '../ArtistTable/ArtistTable';
-import MultiTaskButton from '../MultiTaskButton/MultiTaskButton';
-import Search from '../Search/Search';
-import styles from './Artist.module.scss'
-import ConfirmModal from '../ConfirmModal/ConfirmModal';
-import Modal from '../Modal/Modal';
-import ArtistForm from '../FormForModal/ArtistForm';
-import { ArtistTableInterFace } from '@/app/interface/artistTable.interface';
+"use client";
+import { useState } from "react";
+import ArtistTable from "../ArtistTable/ArtistTable";
+import MultiTaskButton from "../MultiTaskButton/MultiTaskButton";
+import Search from "../Search/Search";
+import styles from "./Artist.module.scss";
+import Modal from "../Modal/Modal";
+import ArtistForm from "../FormForModal/ArtistForm";
+import { ArtistTableInterFace } from "@/app/interface/artistTable.interface";
+import axios from "axios";
 
-const initialDataSource: ArtistTableInterFace[] = [
-];
+const initialDataSource: ArtistTableInterFace[] = [];
 
 const Artist = () => {
-    const [searchTerm, setSearchTerm] = useState('');
-    const [showDeleteModal, setShowDeleteModal] = useState(false);
-    const [showModal, setShowModal] = useState(false)
-    const [showEditModal, setShowEditModal] = useState(false);
-    const [dataSource, setDataSource] = useState<ArtistTableInterFace[]>(initialDataSource);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [dataSource, setDataSource] =
+    useState<ArtistTableInterFace[]>(initialDataSource);
 
-    const handleShow = () => {
-        setShowDeleteModal(!showDeleteModal)
-    }
+  const openArtistForm = () => {
+    setShowModal(!showModal);
+  };
 
-    const handleClose = () => {
-        setShowDeleteModal(false)
-    }
+  const addNewArtist = (newArtist: ArtistTableInterFace) => {
+    setDataSource((prevDataSource) => [...prevDataSource, newArtist]);
+  };
 
-    const openArtistForm = () => {
-        setShowModal(!showModal)
-    }
+  const updateArtist = (updatedArtist: ArtistTableInterFace) => {
+    setDataSource((prevDataSource) =>
+      prevDataSource.map((artist) =>
+        artist.id === updatedArtist.id ? updatedArtist : artist
+      )
+    );
+  };
 
-    const openEditForm = () => {
-        setShowEditModal(!showEditModal)
-    }
+  const handleSearch = () => {
+    axios
+      .get(`https://one919-backend.onrender.com/search/q=${searchTerm}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
+        },
+      })
+      .then((response) => {
+        setDataSource(response.data);
+      })
+      .catch((error) => {
+        console.error("Error searching for artists:", error);
+      });
+  };
 
-    const addNewArtist = (newArtist: ArtistTableInterFace) => {
-        setDataSource(prevDataSource => [...prevDataSource, newArtist]);
-    };
+  return (
+    <>
+      <div className={styles.container}>
+        <MultiTaskButton
+          icon={"/Icons/melody.svg"}
+          title="Add Artist"
+          onclick={openArtistForm}
+        />
+        <Search
+          placeHolder="Search for Artist"
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          onSearch={handleSearch}
+        />
+      </div>
+      <ArtistTable searchTerm={searchTerm} />
 
-
-    return (
-        <>
-            <div className={styles.container}>
-                <MultiTaskButton icon={'/Icons/melody.svg'} title='Add Artist' onclick={openArtistForm} />
-                <Search placeHolder='Search for Artist' searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-            </div>
-            <ArtistTable remove={handleShow} edit={openEditForm} dataSource={dataSource} />
-
-            {
-                showDeleteModal && (
-                    <Modal setShowModal={handleShow} >
-                        <ConfirmModal text={'Do you want to delte an Artist?'} onclose={handleClose} />
-                    </Modal>
-                )
-            }
-
-            {
-                showModal && (
-                    <Modal setShowModal={openArtistForm}>
-                        <ArtistForm setShowModal={openArtistForm} addNewArtist={addNewArtist}/>
-                    </Modal>
-                )
-
-            }
-
-            {
-                showEditModal && (
-                    <Modal setShowModal={openEditForm}>
-                        <ArtistForm setShowModal={openEditForm} />
-                    </Modal>
-                )
-
-            }
-
-        </>
-
-    )
-}
+      {showModal && (
+        <Modal setShowModal={openArtistForm}>
+          <ArtistForm
+            setShowModal={openArtistForm}
+            addNewArtist={addNewArtist}
+            updateArtist={updateArtist}
+          />
+        </Modal>
+      )}
+    </>
+  );
+};
 
 export default Artist;
