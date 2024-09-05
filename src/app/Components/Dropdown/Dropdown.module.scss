@@ -1,26 +1,25 @@
-@import '../../styles/globalColors/color.scss';
-@import '../../styles/globalBorders/borders.scss';
-
+@import "../../styles/globalColors/color.scss";
+@import "../../styles/globalBorders/borders.scss";
 
 .container {
-    border-radius: $small;
-    background-color: $darker;
-    padding: 16px 24px;
-    width: 324px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    justify-content: center;
-    align-items: flex-start;
+  border-radius: $small;
+  background-color: $darker;
+  padding: 16px 24px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .button {
-    color: #fff;
-    background-color: transparent;
-    cursor: pointer;
-    font-size: 24px;
-    font-weight: 400;
-    display: flex;
-    align-items: center;
-    gap: 12px;
+  color: #fff;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
