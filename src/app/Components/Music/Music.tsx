@@ -1,107 +1,81 @@
-'use client'
-import { useState } from 'react';
-import MultiTaskButton from '../MultiTaskButton/MultiTaskButton';
-import Search from '../Search/Search';
-import styles from './Music.module.scss'
-import { musicTableInterface } from '@/app/interface/musicTable.interface';
-import MusicTable from '../MusicTable/MusicTable';
-import Modal from '../Modal/Modal';
-import ConfirmModal from '../ConfirmModal/ConfirmModal';
-import MusicForm from '../FormForModal/MusicModal/MusicForm';
+"use client";
+import { useState } from "react";
+import MultiTaskButton from "../MultiTaskButton/MultiTaskButton";
+import Search from "../Search/Search";
+import styles from "./Music.module.scss";
+import { musicTableInterface } from "@/app/interface/musicTable.interface";
+import MusicTable from "../MusicTable/MusicTable";
+import Modal from "../Modal/Modal";
+import MusicForm from "../FormForModal/MusicModal/MusicForm";
+import axios from "axios";
 
-const dataSource: musicTableInterface[] = [
-    {
-        id: 1,
-        key: '1',
-        image: '/Images/CardIMG.png',
-        playlistName: 'Name',
-        artistName: "lastName",
-        view: '1',
-        time: '12'
-    },
-    {
-        id: 2,
-        key: '2',
-        image: '/Images/CardIMG.png',
-        playlistName: 'Name',
-        artistName: "lastName",
-        view: '1',
-        time: '12'
-    },
-    {
-        id: 3,
-        key: '3',
-        image: '/Images/CardIMG.png',
-        playlistName: 'Name',
-        artistName: "lastName",
-        view: '1',
-        time: '12'
-    },
-
-
-];
+const initialDataSource: musicTableInterface[] = [];
 
 const Music = () => {
-    const [searchTerm, setSearchTerm] = useState('');
-    const [showDeleteModal, setShowDeleteModal] = useState(false);
-    const [showAddMusicModal, setShowAddMusicModal] = useState(false);
-    const [showEditModal, setshowEditModal] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [dataSource, setDataSource] =
+    useState<musicTableInterface[]>(initialDataSource);
 
-    const handleShow = () => {
-        setShowDeleteModal(!showDeleteModal)
-    }
+  const openMusicForm = () => {
+    setShowModal(!showModal);
+  };
 
-    const handleClose = () => {
-        setShowDeleteModal(false)
-    }
+  const addNewMusic = (newMusic: musicTableInterface) => {
+    setDataSource((prevDataSource) => [...prevDataSource, newMusic]);
+  };
 
-    const addMusicModal = () => {
-        setShowAddMusicModal(!showAddMusicModal);
+  const updateMuisc = (updatedMusic: musicTableInterface) => {
+    setDataSource((prevDataSource) =>
+      prevDataSource.map((artist) =>
+        artist.id === updatedMusic.id ? updatedMusic : artist
+      )
+    );
+  };
 
-    }
+  const handleSearch = () => {
+    axios
+      .get(`https://one919-backend.onrender.com/search/q=${searchTerm}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
+        },
+      })
+      .then((response) => {
+        setDataSource(response.data);
+      })
+      .catch((error) => {
+        alert(`Error searching for artists: ${error}`);
+      });
+  };
 
-    const openEditModal = () => {
-        setshowEditModal(!showEditModal)
-    }
+  return (
+    <>
+      <div className={styles.container}>
+        <MultiTaskButton
+          icon={"/Icons/addSongs.svg"}
+          title="Add Songs"
+          onclick={openMusicForm}
+        />
+        <Search
+          placeHolder="Search for Music"
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          onSearch={handleSearch}
+        />
+      </div>
+      <MusicTable searchTerm={searchTerm} />
 
-    return (
-        <>
-            <div className={styles.container}>
-                <MultiTaskButton icon={'/Icons/addSongs.svg'} title='Add Songs' onclick={addMusicModal} />
-                <Search placeHolder='Search for Music' searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-            </div>
-            <MusicTable dataSource={dataSource} remove={handleShow} edit={openEditModal}/>
-
-            {
-                showDeleteModal && (
-                    <Modal setShowModal={handleShow}>
-                        <ConfirmModal text={'Do you want to delte Music?'} onclose={handleClose} />
-                    </Modal>
-                )
-            }
-
-            {
-                showAddMusicModal &&
-                (
-                    <Modal setShowModal={addMusicModal}>
-                        <MusicForm setShowModal={addMusicModal} />
-
-                    </Modal>
-                )
-            }
-
-            {
-                showEditModal && (
-                    <Modal setShowModal={openEditModal}>
-                        <MusicForm setShowModal={openEditModal} />
-
-                    </Modal>
-                )
-            }
-
-        </>
-
-    )
-}
+      {showModal && (
+        <Modal setShowModal={openMusicForm}>
+          <MusicForm
+            setShowModal={openMusicForm}
+            addNewMusic={addNewMusic}
+            updateMusic={updateMuisc}
+          />
+        </Modal>
+      )}
+    </>
+  );
+};
 
 export default Music;
