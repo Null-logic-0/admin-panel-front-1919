@@ -10,7 +10,7 @@ type Props = {
 const AlbumPlaylistInfoCard = ({ image, playlistName, artistName }: Props) => {
   return (
     <div className={styles.container}>
-      <Image src={image} width={138} height={138} alt={"Image"} />
+      <img src={image} width={138} height={138} alt={"Image"} />
 
       <div className={styles.CardInfo}>
         <span className={styles.txt1}>{playlistName}</span>

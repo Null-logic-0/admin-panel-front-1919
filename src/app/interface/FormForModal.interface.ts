@@ -7,5 +7,8 @@ export interface FormDataInterface {
     lastName?:string;
     albumName?:string;
     artistName?:string;
+    music?:string
+    name?:string;
+    authorName?:string;
 
   };
