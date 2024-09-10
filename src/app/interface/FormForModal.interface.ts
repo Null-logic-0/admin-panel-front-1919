@@ -10,5 +10,6 @@ export interface FormDataInterface {
     music?:string
     name?:string;
     authorName?:string;
+    title?:string
 
   };

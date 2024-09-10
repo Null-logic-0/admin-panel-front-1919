@@ -1,8 +1,7 @@
 export interface songModalInterface {
-    artistName:string;
-    songName:string;
-    image:string;
-    duration:string;
+    authorName:string;
+    name:string;
+    photo:any;
     id:number;
     key:string;
 }
