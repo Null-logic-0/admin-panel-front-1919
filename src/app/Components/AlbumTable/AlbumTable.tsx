@@ -33,8 +33,8 @@ const AlbumTable = ({ searchTerm }: TableProps) => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    fetchAlbum();
-  }, []);
+    fetchAlbum(); // Fetch albums when the component mounts
+  }, [dataSource]);
 
   useEffect(() => {
     if (selectedAlbum) {
@@ -94,7 +94,7 @@ const AlbumTable = ({ searchTerm }: TableProps) => {
             },
           }
         );
-        fetchAlbum();
+        fetchAlbum(); // Refresh data after delete
         handleCloseDeleteModal();
       } catch (error) {
         alert(`Error deleting album: ${error}`);
@@ -230,17 +230,13 @@ const AlbumTable = ({ searchTerm }: TableProps) => {
         <Modal setShowModal={() => setShowModal(false)}>
           <AlbumForm
             setShowModal={() => setShowModal(false)}
-            addNewAlbum={(newAlbum) =>
-              setDataSource((prev) => [...prev, newAlbum])
-            }
+            addNewAlbum={async (newAlbum) => {
+              await fetchAlbum(); // Fetch albums after adding a new album
+            }}
             album={selectedAlbum}
-            updateAlbum={(updatedAlbum) =>
-              setDataSource((prev) =>
-                prev.map((album) =>
-                  album.id === updatedAlbum.id ? updatedAlbum : album
-                )
-              )
-            }
+            updateAlbum={async (updatedAlbum) => {
+              await fetchAlbum(); // Fetch albums after updating an album
+            }}
           />
         </Modal>
       )}

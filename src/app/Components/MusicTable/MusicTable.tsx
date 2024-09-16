@@ -17,11 +17,11 @@ const MusicTable = ({ searchTerm }: { searchTerm: string }) => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedMusicId, setSelectedMusicId] = useState<number | null>(null);
-  const [isDataChanged, setIsDataChanged] = useState(false);
 
+  // Fetch music data when the component mounts or data changes
   useEffect(() => {
     fetchMusics();
-  }, [isDataChanged]);
+  }, [dataSource]);
 
   const fetchMusics = async () => {
     try {
@@ -67,9 +67,7 @@ const MusicTable = ({ searchTerm }: { searchTerm: string }) => {
             },
           }
         );
-        setDataSource((prevDataSource) =>
-          prevDataSource.filter((music) => music.id !== selectedMusicId)
-        );
+        fetchMusics(); // Refresh data after delete
         handleClose();
       } catch (error) {
         alert(`Error deleting music: ${error}`);
@@ -77,21 +75,37 @@ const MusicTable = ({ searchTerm }: { searchTerm: string }) => {
     }
   };
 
-  const handleEditMusic = (updatedMusic: musicTableInterface) => {
-    setDataSource((prevDataSource) =>
-      prevDataSource.map((music) =>
-        music.id === updatedMusic.id ? updatedMusic : music
-      )
-    );
-    setShowEditModal(false);
-    setSelectedMusic(null);
-    setIsDataChanged((prev) => !prev);
+  const handleEditMusic = async (updatedMusic: musicTableInterface) => {
+    try {
+      await axios.put(
+        `https://one919-backend.onrender.com/music/${updatedMusic.id}`,
+        updatedMusic,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
+          },
+        }
+      );
+      fetchMusics(); // Refresh data after edit
+      setShowEditModal(false);
+      setSelectedMusic(null);
+    } catch (error) {
+      alert(`Error updating music: ${error}`);
+    }
   };
 
-  const addNewMusic = (newMusic: musicTableInterface) => {
-    setDataSource((prevDataSource) => [...prevDataSource, newMusic]);
-    setShowEditModal(false);
-    setIsDataChanged((prev) => !prev);
+  const addNewMusic = async (newMusic: musicTableInterface) => {
+    try {
+      await axios.post("https://one919-backend.onrender.com/music", newMusic, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
+        },
+      });
+      fetchMusics(); // Refresh data after adding new music
+      setShowEditModal(false);
+    } catch (error) {
+      alert(`Error adding music: ${error}`);
+    }
   };
 
   const filteredDataSource = dataSource.filter(
