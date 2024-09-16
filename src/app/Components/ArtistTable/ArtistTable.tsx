@@ -19,7 +19,7 @@ const ArtistTable = ({ searchTerm }: { searchTerm: string }) => {
 
   useEffect(() => {
     fetchArtists();
-  }, []);
+  }, [dataSource]);
 
   const fetchArtists = async () => {
     try {
@@ -101,9 +101,8 @@ const ArtistTable = ({ searchTerm }: { searchTerm: string }) => {
           },
         }
       );
-
       setDataSource((prevDataSource) => [...prevDataSource, response.data]);
-
+      fetchArtists();
       setShowEditModal(false);
     } catch (error) {
       console.error("Error adding artist:", error);
