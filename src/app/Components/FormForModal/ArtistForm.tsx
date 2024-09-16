@@ -206,8 +206,8 @@ const ArtistForm = ({
           {...register("biography", {
             required: "Description is required",
             maxLength: {
-              value: 83,
-              message: "Minimum length is 83 characters",
+              value: 300,
+              message: "Minimum length is 300 characters",
             },
           })}
           placeholder="About..."

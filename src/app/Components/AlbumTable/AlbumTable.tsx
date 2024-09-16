@@ -168,7 +168,7 @@ const AlbumTable = ({ searchTerm }: TableProps) => {
   const dropdownOptions = (id: number): dropDownOptions[] => [
     {
       icon: "/Icons/addSongs.svg",
-      title: "Add Existing Musics",
+      title: "Add Music",
       id: 1,
       onclick: () => openAddExistMusicsModal(),
     },
@@ -180,7 +180,7 @@ const AlbumTable = ({ searchTerm }: TableProps) => {
     },
     {
       icon: "/Icons/delete.svg",
-      title: "Delete Playlist Music",
+      title: "Delete Music",
       id: 3,
       onclick: () => setShowDeleteSongModal(true),
     },

@@ -136,7 +136,7 @@ const MusicForm = ({
             className={classNames({ [styles.error]: errors.musicName })}
             {...register("musicName", {
               required: "Music Name is required",
-              maxLength: { value: 20, message: "Max length is 20 characters" },
+              maxLength: { value: 30, message: "Max length is 30 characters" },
             })}
             type="text"
             text="Music Name"
