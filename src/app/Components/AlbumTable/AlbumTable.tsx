@@ -33,7 +33,7 @@ const AlbumTable = ({ searchTerm }: TableProps) => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    fetchAlbum(); 
+    fetchAlbum();
   }, [dataSource]);
 
   useEffect(() => {
@@ -53,8 +53,7 @@ const AlbumTable = ({ searchTerm }: TableProps) => {
         }
       );
       setDataSource(response.data);
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   const handleShowDeleteModal = (id: number) => {
@@ -93,10 +92,9 @@ const AlbumTable = ({ searchTerm }: TableProps) => {
             },
           }
         );
-        fetchAlbum(); 
+        fetchAlbum();
         handleCloseDeleteModal();
-      } catch (error) {
-      }
+      } catch (error) {}
     }
   };
 
@@ -109,7 +107,7 @@ const AlbumTable = ({ searchTerm }: TableProps) => {
   );
 
   const openEditAlbumModal = (id?: number) => {
-    const albumToEdit = dataSource.find(album => album.id === id);
+    const albumToEdit = dataSource.find((album) => album.id === id);
     setSelectedAlbum(albumToEdit);
     setShowModal(true);
   };
@@ -229,11 +227,11 @@ const AlbumTable = ({ searchTerm }: TableProps) => {
           <AlbumForm
             setShowModal={() => setShowModal(false)}
             addNewAlbum={async (newAlbum) => {
-              await fetchAlbum(); 
+              await fetchAlbum();
             }}
             album={selectedAlbum}
             updateAlbum={async (updatedAlbum) => {
-              await fetchAlbum(); 
+              await fetchAlbum();
             }}
           />
         </Modal>
