@@ -36,9 +36,7 @@ const Album = () => {
       .then((response) => {
         setDataSource(response.data);
       })
-      .catch((error) => {
-        alert(`Error searching for albums: ${error.message}`);
-      });
+      
   };
 
   const addNewAlbum = (newAlbum: albumTableInterface) => {

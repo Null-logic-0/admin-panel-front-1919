@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import styles from "./ArtistUserInfoCard.module.scss";
 import Image from "next/image";
 

@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { useForm, SubmitHandler } from "react-hook-form";
 import Image from "next/image";
 import styles from "./AlbumForm.module.scss";
@@ -9,6 +9,7 @@ import axios from "axios";
 import FormInput from "../FormInput/FormInput";
 import Button from "../../Button/Button";
 import { albumTableInterface } from "@/app/interface/albumTable.interface";
+import Spinner from "../../LoadingSpiner/Spiner";
 
 type FormProps = {
   setShowModal: (value: boolean) => void;
@@ -34,6 +35,7 @@ const AlbumForm = ({
   } = useForm<FormDataInterface>();
 
   const [imageUploaded, setImageUploaded] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     if (album) {
@@ -62,7 +64,6 @@ const AlbumForm = ({
 
   const onSubmit: SubmitHandler<FormDataInterface> = (data) => {
     if (!data.title) {
-      alert("Album Name is required!");
       return;
     }
 
@@ -78,6 +79,7 @@ const AlbumForm = ({
       return;
     }
 
+    setLoading(true); 
     let request;
     if (album) {
       request = axios
@@ -102,7 +104,6 @@ const AlbumForm = ({
           setShowModal(false);
         })
         .catch((error) => {
-          alert(`An error occurred: ${error.message}`);
         });
     } else {
       request = axios
@@ -125,14 +126,12 @@ const AlbumForm = ({
           setImageUploaded(false);
           setShowModal(false);
         })
-        .catch((error) => {
-          alert(
-            `An error occurred: ${
-              error.response?.data?.message || error.message
-            }`
-          );
-        });
+       
     }
+
+    request.finally(() => {
+      setLoading(false); 
+    });
   };
 
   return (
@@ -212,8 +211,9 @@ const AlbumForm = ({
       </div>
 
       <div className={styles.button}>
-        <Button title={album ? "Update" : "Add"} />
+        <Button title={loading ? "Saving..." : album ? "Update" : "Add"} disabled={loading} />
       </div>
+      {loading && <div className={styles.spinner}><Spinner /></div>} 
     </form>
   );
 };

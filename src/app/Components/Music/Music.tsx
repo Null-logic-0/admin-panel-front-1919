@@ -42,9 +42,8 @@ const Music = () => {
       })
       .then((response) => {
         setDataSource(response.data);
-      })
-      .catch((error) => {
       });
+      
   };
 
   return (

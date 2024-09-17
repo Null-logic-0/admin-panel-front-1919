@@ -1,4 +1,3 @@
-"use client";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Image from "next/image";
 import styles from "./MusicForm.module.scss";
@@ -9,6 +8,7 @@ import { useEffect, useState } from "react";
 import classNames from "classnames";
 import axios from "axios";
 import { musicTableInterface } from "@/app/interface/musicTable.interface";
+import Spinner from "../../LoadingSpiner/Spiner";
 
 type FormProps = {
   setShowModal: (value: boolean) => void;
@@ -37,6 +37,7 @@ const MusicForm = ({
   const [image, setImage] = useState<File | null>(null);
   const [files, setFiles] = useState<File[]>([]);
   const [imageUploaded, setImageUploaded] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false); 
 
   useEffect(() => {
     if (music) {
@@ -71,11 +72,9 @@ const MusicForm = ({
 
   const onSubmit: SubmitHandler<FormDataInterface> = (data) => {
     const formData = new FormData();
-
-    files.forEach((file, index) => {
-      formData.append(`files`, file);
+    files.forEach((file) => {
+      formData.append("files", file);
     });
-
     formData.append("name", data.musicName || "");
     formData.append("authorName", data.artistName || "");
 
@@ -85,47 +84,30 @@ const MusicForm = ({
       "Content-Type": "multipart/form-data",
     };
 
-    if (music) {
-      axios
-        .put(
-          `https://one919-backend.onrender.com/music/${music.id}`,
-          formData,
-          { headers }
-        )
-        .then((response) => {
-          const updatedMusic = {
-            ...music,
-            name: response.data.musicName,
-            authorName: response.data.artistName,
-            photo: response.data.files,
-          };
-          updateMusic?.(updatedMusic);
-          setShowModal(false);
-        })
-        .catch((error) => {
-          alert(`An error occurred: ${error.message}`);
-        });
-    } else {
-      axios
-        .post("https://one919-backend.onrender.com/music", formData, {
-          headers,
-        })
-        .then((response) => {
-          const newMusic: musicTableInterface = {
-            id: response.data.id,
-            key: response.data.id.toString(),
-            name: response.data.musicName,
-            authorName: response.data.artistName,
-            photo: response.data.files,
-            music: response.data.files,
-          };
-          addNewMusic?.(newMusic);
-          setShowModal(false);
-        })
-        .catch((error) => {
-          alert(`An error occurred: ${error.message}`);
-        });
-    }
+    setLoading(true); 
+    const request = music
+      ? axios.put(`https://one919-backend.onrender.com/music/${music.id}`, formData, { headers })
+      : axios.post("https://one919-backend.onrender.com/music", formData, { headers });
+
+    request
+      .then((response) => {
+        const newMusic: musicTableInterface = {
+          id: response.data.id,
+          key: response.data.id.toString(),
+          name: response.data.musicName,
+          authorName: response.data.artistName,
+          photo: response.data.files,
+          music: response.data.files,
+        };
+        music ? updateMusic?.(newMusic) : addNewMusic?.(newMusic);
+        setShowModal(false);
+      })
+      .catch((error) => {
+        alert(`An error occurred: ${error.message}`);
+      })
+      .finally(() => {
+        setLoading(false); 
+      });
   };
 
   return (
@@ -228,8 +210,9 @@ const MusicForm = ({
       </div>
 
       <div className={styles.button}>
-        <Button title={music ? "Update" : "Add"} />
+        <Button title={loading ? "Saving..." : music ? "Update" : "Add"} disabled={loading} />
       </div>
+      {loading && <div className={styles.spinner}><Spinner /></div>}
     </form>
   );
 };

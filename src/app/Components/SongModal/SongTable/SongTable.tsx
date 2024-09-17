@@ -42,7 +42,7 @@ const SongTable = ({ showAddButton, albumId, searchTerm }: songTableProps) => {
       );
       setSongsNotInAlbum(response.data);
     } catch (error) {
-      alert(`Error fetching songs not in album: ${error}`);
+      
     }
   };
 
@@ -58,7 +58,6 @@ const SongTable = ({ showAddButton, albumId, searchTerm }: songTableProps) => {
       );
       setSongsInAlbum(response.data);
     } catch (error) {
-      alert(`Error fetching songs in album: ${error}`);
     }
   };
 
@@ -100,7 +99,6 @@ const SongTable = ({ showAddButton, albumId, searchTerm }: songTableProps) => {
         fetchSongsNotInAlbum();
         handleCloseDeleteModal();
       } catch (error) {
-        alert(`Error deleting music: ${error}`);
       }
     }
   };
