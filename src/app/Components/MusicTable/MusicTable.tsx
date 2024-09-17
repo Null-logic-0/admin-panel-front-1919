@@ -36,7 +36,6 @@ const MusicTable = ({ searchTerm }: { searchTerm: string }) => {
         response.data.map((item: any) => ({ ...item, key: item.id.toString() }))
       );
     } catch (error) {
-      alert(`Error fetching data:${error}`);
     }
   };
 
@@ -69,7 +68,6 @@ const MusicTable = ({ searchTerm }: { searchTerm: string }) => {
         fetchMusics(); 
         handleClose();
       } catch (error) {
-        alert(`Error deleting music: ${error}`);
       }
     }
   };
@@ -89,7 +87,6 @@ const MusicTable = ({ searchTerm }: { searchTerm: string }) => {
       setShowEditModal(false);
       setSelectedMusic(null);
     } catch (error) {
-      alert(`Error updating music: ${error}`);
     }
   };
 
@@ -103,7 +100,6 @@ const MusicTable = ({ searchTerm }: { searchTerm: string }) => {
       fetchMusics(); 
       setShowEditModal(false);
     } catch (error) {
-      alert(`Error adding music: ${error}`);
     }
   };
 

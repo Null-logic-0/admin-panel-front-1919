@@ -43,7 +43,6 @@ const UserTable = ({ dropdownOptions, searchTerm,openBlockModal }: userTableProp
       );
       setDataSource(response.data);
     } catch (error) {
-      console.error("Error fetching data:", error);
     }
   };
 
@@ -85,7 +84,6 @@ const UserTable = ({ dropdownOptions, searchTerm,openBlockModal }: userTableProp
         fetchUsers();
         handleClose();
       } catch (error) {
-        console.error("Error deleting artist:", error);
       }
     }
   };

@@ -27,7 +27,6 @@ const SongModal = ({setShowModal,showAddButton,albumId}:modalProps) =>{
             setDataSource(response.data);
           })
           .catch((error) => {
-            alert(`Error searching for albums: ${error.message}`);
           });
       };
     return (

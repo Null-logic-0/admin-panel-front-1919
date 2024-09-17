@@ -54,7 +54,6 @@ const AlbumTable = ({ searchTerm }: TableProps) => {
       );
       setDataSource(response.data);
     } catch (error) {
-      alert(`Error fetching data: ${error}`);
     }
   };
 
@@ -97,7 +96,6 @@ const AlbumTable = ({ searchTerm }: TableProps) => {
         fetchAlbum(); 
         handleCloseDeleteModal();
       } catch (error) {
-        alert(`Error deleting album: ${error}`);
       }
     }
   };
@@ -231,11 +229,11 @@ const AlbumTable = ({ searchTerm }: TableProps) => {
           <AlbumForm
             setShowModal={() => setShowModal(false)}
             addNewAlbum={async (newAlbum) => {
-              await fetchAlbum(); // Fetch albums after adding a new album
+              await fetchAlbum(); 
             }}
             album={selectedAlbum}
             updateAlbum={async (updatedAlbum) => {
-              await fetchAlbum(); // Fetch albums after updating an album
+              await fetchAlbum(); 
             }}
           />
         </Modal>

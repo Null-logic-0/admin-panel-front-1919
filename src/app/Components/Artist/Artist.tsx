@@ -44,7 +44,6 @@ const Artist = () => {
         setDataSource(response.data);
       })
       .catch((error) => {
-        console.error("Error searching for artists:", error);
       });
   };
 

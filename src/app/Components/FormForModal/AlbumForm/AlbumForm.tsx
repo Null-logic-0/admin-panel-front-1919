@@ -75,7 +75,6 @@ const AlbumForm = ({
 
     const token = localStorage.getItem("accesstoken");
     if (!token) {
-      alert("No token found in localStorage");
       return;
     }
 
