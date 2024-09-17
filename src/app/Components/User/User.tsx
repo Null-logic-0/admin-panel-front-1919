@@ -34,7 +34,6 @@ const User = () => {
       );
       setDataSource(response.data);
     } catch (error) {
-      console.error("Error fetching users:", error);
     }
   };
 
@@ -50,7 +49,6 @@ const User = () => {
       );
       setDataSource(response.data);
     } catch (error) {
-      console.error("Error searching for users:", error);
     }
   };
 
@@ -69,7 +67,6 @@ const User = () => {
         await fetchUsers();
         closeBlockModal();
       } catch (error) {
-        console.error("Error blocking user:", error);
       }
     }
   };

@@ -26,7 +26,7 @@ const UserTable = ({ dropdownOptions, searchTerm,openBlockModal }: userTableProp
   const [dataSource, setDataSource] =
     useState<UserTableInterFace[]>(initialDataSource);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-
+console.log(dataSource,'unfiltered')
   useEffect(() => {
     fetchUsers();
   }, []);
@@ -92,7 +92,6 @@ const UserTable = ({ dropdownOptions, searchTerm,openBlockModal }: userTableProp
     (user) =>
       user.email && user.email.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
   const columns = [
     {
       title: "Gmail",
