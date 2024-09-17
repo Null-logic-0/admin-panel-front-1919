@@ -18,7 +18,6 @@ const MusicTable = ({ searchTerm }: { searchTerm: string }) => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedMusicId, setSelectedMusicId] = useState<number | null>(null);
 
-  // Fetch music data when the component mounts or data changes
   useEffect(() => {
     fetchMusics();
   }, [dataSource]);
@@ -67,7 +66,7 @@ const MusicTable = ({ searchTerm }: { searchTerm: string }) => {
             },
           }
         );
-        fetchMusics(); // Refresh data after delete
+        fetchMusics(); 
         handleClose();
       } catch (error) {
         alert(`Error deleting music: ${error}`);
@@ -86,7 +85,7 @@ const MusicTable = ({ searchTerm }: { searchTerm: string }) => {
           },
         }
       );
-      fetchMusics(); // Refresh data after edit
+      fetchMusics(); 
       setShowEditModal(false);
       setSelectedMusic(null);
     } catch (error) {
@@ -101,7 +100,7 @@ const MusicTable = ({ searchTerm }: { searchTerm: string }) => {
           Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
         },
       });
-      fetchMusics(); // Refresh data after adding new music
+      fetchMusics(); 
       setShowEditModal(false);
     } catch (error) {
       alert(`Error adding music: ${error}`);

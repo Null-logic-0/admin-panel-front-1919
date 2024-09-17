@@ -33,7 +33,7 @@ const AlbumTable = ({ searchTerm }: TableProps) => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    fetchAlbum(); // Fetch albums when the component mounts
+    fetchAlbum(); 
   }, [dataSource]);
 
   useEffect(() => {
@@ -94,7 +94,7 @@ const AlbumTable = ({ searchTerm }: TableProps) => {
             },
           }
         );
-        fetchAlbum(); // Refresh data after delete
+        fetchAlbum(); 
         handleCloseDeleteModal();
       } catch (error) {
         alert(`Error deleting album: ${error}`);
