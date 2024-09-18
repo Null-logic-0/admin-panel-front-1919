@@ -1,4 +1,3 @@
-"use client";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Image from "next/image";
 import styles from "./ArtistForm.module.scss";
@@ -9,6 +8,7 @@ import classNames from "classnames";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { ArtistTableInterFace } from "@/app/interface/artistTable.interface";
+import Spinner from "../LoadingSpiner/Spiner";
 
 type FormProps = {
   setShowModal: (value: boolean) => void;
@@ -34,6 +34,7 @@ const ArtistForm = ({
   } = useForm<FormDataInterface>();
 
   const [imageUploaded, setImageUploaded] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false); // Loading state
 
   useEffect(() => {
     if (artist) {
@@ -76,6 +77,7 @@ const ArtistForm = ({
       return;
     }
 
+    setLoading(true); 
     let request;
     if (artist) {
       request = axios.put(
@@ -120,8 +122,9 @@ const ArtistForm = ({
         setShowModal(false);
       })
       .catch((error) => {
-        console.error("Error submitting form:", error);
-        alert(`An error occurred: ${error.message}`);
+      })
+      .finally(() => {
+        setLoading(false); 
       });
   };
 
@@ -223,8 +226,10 @@ const ArtistForm = ({
       </div>
 
       <div className={styles.button}>
-        <Button title={artist ? "Update" : "Add"} />
+        <Button title={loading ? "Saving..." : artist ? "Update" : "Add"} disabled={loading} />
       </div>
+
+      {loading && <div className={styles.spinner}><Spinner /></div>} 
     </form>
   );
 };

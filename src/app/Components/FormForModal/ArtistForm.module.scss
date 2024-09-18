@@ -1,109 +1,121 @@
-@import '../../styles/globalColors/color.scss';
-@import '../../styles/globalBorders/borders.scss';
-
+@import "../../styles/globalColors/color.scss";
+@import "../../styles/globalBorders/borders.scss";
 
 .main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 40px;
-    padding: 10px 0 30px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  padding: 10px 0 30px 0;
 }
 
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 31px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 31px;
 }
 
 .inputs {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
+  justify-content: center;
 }
 
 .image {
-    border-radius: $medium;
+  border-radius: $medium;
 }
 
 .upload {
-    border: 0.797px solid #FFF;
-    width: 268px;
-    height: 240px;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  border: 0.797px solid #fff;
+  width: 268px;
+  height: 240px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .uploader[type="file"] {
-    display: none;
+  display: none;
 }
 
 .label {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .textarea {
-    background-color: $dark3;
-    border-radius: $large;
-    color: #FFF;
+  background-color: $dark3;
+  border-radius: $large;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  padding: 16px 20px;
+  width: 658px;
+  height: 198px;
+  outline: none;
+  border: none;
+  resize: none;
+
+  &::placeholder {
+    color: #d5cfeb;
     font-size: 20px;
     font-weight: 500;
-    line-height: 24px;
-    padding: 16px 20px;
-    width: 658px;
-    height: 198px;
-    outline: none;
-    border: none;
-    resize: none;
-
-    &::placeholder {
-        color: #D5CFEB;
-        font-size: 20px;
-        font-weight: 500;
-        line-height: 32px;
-    }
-    &:focus{
-        border: 1px solid $mainColor;
-    }
+    line-height: 32px;
+  }
+  &:focus {
+    border: 1px solid $mainColor;
+  }
 }
 
-.button{
-    width: 212px;
+.button {
+  width: 212px;
 }
 
 .error {
-    border: 1px solid $error !important;
+  border: 1px solid $error !important;
 }
 
 .infoContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
 }
 
 .info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
-.errorContainer{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: flex-start;
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
 }
 
 .errorMessage {
-    color: $error;
-    font-size: 14px;
-    font-weight: 500;
+  color: $error;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.spinner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
 }
