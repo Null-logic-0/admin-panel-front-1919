@@ -18,7 +18,11 @@ type userTableProps = {
 
 const initialDataSource: UserTableInterFace[] = [];
 
-const UserTable = ({ dropdownOptions, searchTerm,openBlockModal }: userTableProps) => {
+const UserTable = ({
+  dropdownOptions,
+  searchTerm,
+  openBlockModal,
+}: userTableProps) => {
   const [dropdownVisibility, setDropdownVisibility] = useState<{
     [key: string]: boolean;
   }>({});
@@ -26,7 +30,7 @@ const UserTable = ({ dropdownOptions, searchTerm,openBlockModal }: userTableProp
   const [dataSource, setDataSource] =
     useState<UserTableInterFace[]>(initialDataSource);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-console.log(dataSource,'unfiltered')
+  console.log(dataSource, "unfiltered");
   useEffect(() => {
     fetchUsers();
   }, []);
@@ -34,7 +38,7 @@ console.log(dataSource,'unfiltered')
   const fetchUsers = async () => {
     try {
       const response = await axios.get(
-        "https://one919-backend.onrender.com/user",
+        "https://one919-backend-1.onrender.com/user",
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
@@ -42,8 +46,7 @@ console.log(dataSource,'unfiltered')
         }
       );
       setDataSource(response.data);
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   const handleShow = (id: number) => {
@@ -74,7 +77,7 @@ console.log(dataSource,'unfiltered')
     if (selectedUserId !== null) {
       try {
         await axios.delete(
-          `https://one919-backend.onrender.com/user/${selectedUserId}`,
+          `https://one919-backend-1.onrender.com/user/${selectedUserId}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
@@ -83,8 +86,7 @@ console.log(dataSource,'unfiltered')
         );
         fetchUsers();
         handleClose();
-      } catch (error) {
-      }
+      } catch (error) {}
     }
   };
 
@@ -98,7 +100,11 @@ console.log(dataSource,'unfiltered')
       dataIndex: "email",
       key: "email",
       render: (text: string, record: UserTableInterFace) => (
-        <span className={`${styles.text} ${record.blocked ? styles.blocked : ''}`}>{record.email}</span>
+        <span
+          className={`${styles.text} ${record.blocked ? styles.blocked : ""}`}
+        >
+          {record.email}
+        </span>
       ),
     },
     {
@@ -117,7 +123,7 @@ console.log(dataSource,'unfiltered')
             {dropdownVisibility[record.id.toString()] && (
               <div className={styles.dropdown}>
                 <Dropdown
-                  options={dropdownOptions(record.id)} 
+                  options={dropdownOptions(record.id)}
                   onOptionSelect={() => closeDropdown(record.id.toString())}
                 />
               </div>

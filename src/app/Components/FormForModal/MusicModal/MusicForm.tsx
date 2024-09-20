@@ -37,12 +37,35 @@ const MusicForm = ({
   const [image, setImage] = useState<File | null>(null);
   const [files, setFiles] = useState<File[]>([]);
   const [imageUploaded, setImageUploaded] = useState(false);
-  const [loading, setLoading] = useState<boolean>(false); 
+  const [loading, setLoading] = useState<boolean>(false);
+  const [artists, setArtists] = useState<{ id: string; name: string }[]>([]);
 
   useEffect(() => {
+    const fetchArtists = async () => {
+      const token = localStorage.getItem("accesstoken");
+
+      try {
+        const response = await axios.get(
+          "https://one919-backend-1.onrender.com/author",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        const formattedArtists = response.data.map((artist: any) => ({
+          id: artist.id,
+          name: `${artist.firstName} ${artist.lastName}`,
+        }));
+        setArtists(formattedArtists);
+      } catch (error) {
+      }
+    };
+    fetchArtists();
+
     if (music) {
       setValue("musicName", music.name);
-      setValue("artistName", music.authorName);
+      setValue("authorName", music.authorName);
       if (music.photo) setImageUploaded(true);
     } else {
       reset();
@@ -76,7 +99,7 @@ const MusicForm = ({
       formData.append("files", file);
     });
     formData.append("name", data.musicName || "");
-    formData.append("authorName", data.artistName || "");
+    formData.append("authorName", data.authorName || ""); 
 
     const token = localStorage.getItem("accesstoken");
     const headers = {
@@ -84,10 +107,16 @@ const MusicForm = ({
       "Content-Type": "multipart/form-data",
     };
 
-    setLoading(true); 
+    setLoading(true);
     const request = music
-      ? axios.put(`https://one919-backend.onrender.com/music/${music.id}`, formData, { headers })
-      : axios.post("https://one919-backend.onrender.com/music", formData, { headers });
+      ? axios.put(
+          `https://one919-backend-1.onrender.com/music/${music.id}`,
+          formData,
+          { headers }
+        )
+      : axios.post("https://one919-backend-1.onrender.com/music", formData, {
+          headers,
+        });
 
     request
       .then((response) => {
@@ -95,7 +124,7 @@ const MusicForm = ({
           id: response.data.id,
           key: response.data.id.toString(),
           name: response.data.musicName,
-          authorName: response.data.artistName,
+          authorName: response.data.authorName,
           photo: response.data.files,
           music: response.data.files,
         };
@@ -106,7 +135,7 @@ const MusicForm = ({
         alert(`An error occurred: ${error.message}`);
       })
       .finally(() => {
-        setLoading(false); 
+        setLoading(false);
       });
   };
 
@@ -130,15 +159,26 @@ const MusicForm = ({
           )}
         </div>
         <div className={styles.inputs}>
-          <FormInput
-            className={classNames({ [styles.error]: errors.artistName })}
-            {...register("artistName", {
+          <select
+            id="authorName"
+            className={classNames({ [styles.error]: errors.artistName } ,styles.select)}
+            {...register("authorName", {
               required: "Artist Name is required",
-              maxLength: { value: 20, message: "Max length is 20 characters" },
             })}
-            type="text"
-            text="Artist Name"
-          />
+          >
+            <option value="" className={styles.option}>
+              Select an artist
+            </option>
+            {artists.map((artist) => (
+              <option
+                key={artist.id}
+                value={artist.name}
+                className={styles.options}
+              >
+                {artist.name} 
+              </option>
+            ))}
+          </select>
           {errors.artistName && (
             <span className={styles.errorMessage}>
               {errors.artistName.message}
@@ -210,9 +250,16 @@ const MusicForm = ({
       </div>
 
       <div className={styles.button}>
-        <Button title={loading ? "Saving..." : music ? "Update" : "Add"} disabled={loading} />
+        <Button
+          title={loading ? "Saving..." : music ? "Update" : "Add"}
+          disabled={loading}
+        />
       </div>
-      {loading && <div className={styles.spinner}><Spinner /></div>}
+      {loading && (
+        <div className={styles.spinner}>
+          <Spinner />
+        </div>
+      )}
     </form>
   );
 };

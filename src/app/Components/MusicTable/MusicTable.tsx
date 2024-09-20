@@ -25,7 +25,7 @@ const MusicTable = ({ searchTerm }: { searchTerm: string }) => {
   const fetchMusics = async () => {
     try {
       const response = await axios.get(
-        "https://one919-backend.onrender.com/music",
+        "https://one919-backend-1.onrender.com/music",
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
@@ -35,8 +35,7 @@ const MusicTable = ({ searchTerm }: { searchTerm: string }) => {
       setDataSource(
         response.data.map((item: any) => ({ ...item, key: item.id.toString() }))
       );
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   const handleShow = (id: number) => {
@@ -58,24 +57,23 @@ const MusicTable = ({ searchTerm }: { searchTerm: string }) => {
     if (selectedMusicId !== null) {
       try {
         await axios.delete(
-          `https://one919-backend.onrender.com/music/${selectedMusicId}`,
+          `https://one919-backend-1.onrender.com/music/${selectedMusicId}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
             },
           }
         );
-        fetchMusics(); 
+        fetchMusics();
         handleClose();
-      } catch (error) {
-      }
+      } catch (error) {}
     }
   };
 
   const handleEditMusic = async (updatedMusic: musicTableInterface) => {
     try {
       await axios.put(
-        `https://one919-backend.onrender.com/music/${updatedMusic.id}`,
+        `https://one919-backend-1.onrender.com/music/${updatedMusic.id}`,
         updatedMusic,
         {
           headers: {
@@ -83,24 +81,26 @@ const MusicTable = ({ searchTerm }: { searchTerm: string }) => {
           },
         }
       );
-      fetchMusics(); 
+      fetchMusics();
       setShowEditModal(false);
       setSelectedMusic(null);
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   const addNewMusic = async (newMusic: musicTableInterface) => {
     try {
-      await axios.post("https://one919-backend.onrender.com/music", newMusic, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
-        },
-      });
-      fetchMusics(); 
+      await axios.post(
+        "https://one919-backend-1.onrender.com/music",
+        newMusic,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
+          },
+        }
+      );
+      fetchMusics();
       setShowEditModal(false);
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   const filteredDataSource = dataSource.filter(

@@ -45,7 +45,7 @@ const AlbumTable = ({ searchTerm }: TableProps) => {
   const fetchAlbum = async () => {
     try {
       const response = await axios.get(
-        "https://one919-backend.onrender.com/album",
+        "https://one919-backend-1.onrender.com/album",
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
@@ -85,7 +85,7 @@ const AlbumTable = ({ searchTerm }: TableProps) => {
     if (selectedUserId !== null) {
       try {
         await axios.delete(
-          `https://one919-backend.onrender.com/album/${selectedUserId}`,
+          `https://one919-backend-1.onrender.com/album/${selectedUserId}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,

@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
@@ -18,7 +18,9 @@ type songTableProps = {
 
 const SongTable = ({ showAddButton, albumId, searchTerm }: songTableProps) => {
   const [songsInAlbum, setSongsInAlbum] = useState<songModalInterface[]>([]);
-  const [songsNotInAlbum, setSongsNotInAlbum] = useState<songModalInterface[]>([]);
+  const [songsNotInAlbum, setSongsNotInAlbum] = useState<songModalInterface[]>(
+    []
+  );
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showAddMusicModal, setShowAddMusicModal] = useState(false);
   const [deleteMusicId, setDeleteMusicId] = useState<string | null>(null);
@@ -27,13 +29,13 @@ const SongTable = ({ showAddButton, albumId, searchTerm }: songTableProps) => {
     if (albumId) {
       fetchSongsInAlbum();
       fetchSongsNotInAlbum();
-    } 
+    }
   }, [albumId]);
 
   const fetchSongsNotInAlbum = async () => {
     try {
       const response = await axios.get(
-        `https://one919-backend.onrender.com/music/notInAlbum/${albumId}`,
+        `https://one919-backend-1.onrender.com/music/notInAlbum/${albumId}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
@@ -41,15 +43,13 @@ const SongTable = ({ showAddButton, albumId, searchTerm }: songTableProps) => {
         }
       );
       setSongsNotInAlbum(response.data);
-    } catch (error) {
-      
-    }
+    } catch (error) {}
   };
 
   const fetchSongsInAlbum = async () => {
     try {
       const response = await axios.get(
-        `https://one919-backend.onrender.com/music/inAlbum/${albumId}`,
+        `https://one919-backend-1.onrender.com/music/inAlbum/${albumId}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
@@ -57,15 +57,14 @@ const SongTable = ({ showAddButton, albumId, searchTerm }: songTableProps) => {
         }
       );
       setSongsInAlbum(response.data);
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   const handleAddMusic = async (musicId: string) => {
     if (albumId) {
       try {
         await axios.put(
-          `https://one919-backend.onrender.com/album/addMusic/${albumId}`,
+          `https://one919-backend-1.onrender.com/album/addMusic/${albumId}`,
           {
             musicId: musicId,
           },
@@ -88,18 +87,17 @@ const SongTable = ({ showAddButton, albumId, searchTerm }: songTableProps) => {
     if (albumId && deleteMusicId) {
       try {
         await axios.delete(
-          `https://one919-backend.onrender.com/album/${albumId}/music/${deleteMusicId}`,
+          `https://one919-backend-1.onrender.com/album/${albumId}/music/${deleteMusicId}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
             },
           }
         );
-        fetchSongsInAlbum();  
+        fetchSongsInAlbum();
         fetchSongsNotInAlbum();
         handleCloseDeleteModal();
-      } catch (error) {
-      }
+      } catch (error) {}
     }
   };
 
@@ -116,9 +114,7 @@ const SongTable = ({ showAddButton, albumId, searchTerm }: songTableProps) => {
   const filteredSongsNotInAlbum = songsNotInAlbum.filter(
     (music) =>
       (music.authorName &&
-        music.authorName
-          .toLowerCase()
-          .includes(searchTerm.toLowerCase())) ||
+        music.authorName.toLowerCase().includes(searchTerm.toLowerCase())) ||
       (music.name &&
         music.name.toLowerCase().includes(searchTerm.toLowerCase()))
   );
@@ -126,9 +122,7 @@ const SongTable = ({ showAddButton, albumId, searchTerm }: songTableProps) => {
   const filteredSongsInAlbum = songsInAlbum.filter(
     (music) =>
       (music.authorName &&
-        music.authorName
-          .toLowerCase()
-          .includes(searchTerm.toLowerCase())) ||
+        music.authorName.toLowerCase().includes(searchTerm.toLowerCase())) ||
       (music.name &&
         music.name.toLowerCase().includes(searchTerm.toLowerCase()))
   );
@@ -181,7 +175,9 @@ const SongTable = ({ showAddButton, albumId, searchTerm }: songTableProps) => {
   return (
     <Table
       columns={columns}
-      dataSource={showAddButton ? filteredSongsNotInAlbum : filteredSongsInAlbum}
+      dataSource={
+        showAddButton ? filteredSongsNotInAlbum : filteredSongsInAlbum
+      }
       pagination={false}
       showHeader={false}
       rowClassName={() => "song-row"}

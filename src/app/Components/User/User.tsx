@@ -14,18 +14,21 @@ const User = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [dataSource, setDataSource] = useState<UserTableInterFace[]>([]);
   const [selectedUserId, setSelectedUserId] = useState<number | null>(null);
-  const [passwordChangeUserId, setPasswordChangeUserId] = useState<number | null>(null);
+  const [passwordChangeUserId, setPasswordChangeUserId] = useState<
+    number | null
+  >(null);
   const [showBlockModal, setShowBlockModal] = useState(false);
+  const [showUnBlockModal, setShowUnBlockModal] = useState(false);
   const [showPasswordModal, setShowPasswordModal] = useState(false);
 
   useEffect(() => {
     fetchUsers();
-  }, []);
+  }, [dataSource]);
 
   const fetchUsers = async () => {
     try {
       const response = await axios.get(
-        "https://one919-backend.onrender.com/user",
+        "https://one919-backend-1.onrender.com/user",
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
@@ -33,14 +36,13 @@ const User = () => {
         }
       );
       setDataSource(response.data);
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   const handleSearch = async () => {
     try {
       const response = await axios.get(
-        `https://one919-backend.onrender.com/search/q=${searchTerm}`,
+        `https://one919-backend-1.onrender.com/search/q=${searchTerm}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
@@ -48,15 +50,14 @@ const User = () => {
         }
       );
       setDataSource(response.data);
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   const handleBlockUser = async () => {
     if (selectedUserId) {
       try {
-        await axios.put(
-          `https://one919-backend.onrender.com/auth/block/${selectedUserId}`,
+        axios.put(
+          `https://one919-backend-1.onrender.com/auth/block/${selectedUserId}`,
           { isBlocked: true },
           {
             headers: {
@@ -64,18 +65,35 @@ const User = () => {
             },
           }
         );
-        await fetchUsers();
+        fetchUsers();
         closeBlockModal();
-      } catch (error) {
-      }
+      } catch (error) {}
+    }
+  };
+
+  const handleUnBlockUser = async () => {
+    if (selectedUserId) {
+      try {
+        axios.put(
+          `https://one919-backend-1.onrender.com/auth/unBlock/${selectedUserId}`,
+          { isBlocked: true },
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
+            },
+          }
+        );
+        fetchUsers();
+        closeUnBlockModal();
+      } catch (error) {}
     }
   };
 
   const handleChangePassword = async (newPassword: string) => {
     if (passwordChangeUserId) {
       try {
-        await axios.put(
-          `https://one919-backend.onrender.com/auth/change-password/${passwordChangeUserId}`,
+        axios.put(
+          `https://one919-backend-1.onrender.com/auth/change-password/${passwordChangeUserId}`,
           { newPassword },
           {
             headers: {
@@ -85,7 +103,6 @@ const User = () => {
         );
         closeChangePassword();
       } catch (error) {
-        console.error("Error changing password:", error);
       }
     }
   };
@@ -100,6 +117,16 @@ const User = () => {
     setShowBlockModal(false);
   };
 
+  const openUnBlockModal = (userId: number) => {
+    setSelectedUserId(userId);
+    setShowUnBlockModal(true);
+  };
+
+  const closeUnBlockModal = () => {
+    setSelectedUserId(null);
+    setShowUnBlockModal(false);
+  };
+
   const openChangePassword = (userId: number) => {
     setPasswordChangeUserId(userId);
     setShowPasswordModal(true);
@@ -112,16 +139,22 @@ const User = () => {
 
   const dropdownOptions = (userId: number): dropDownOptions[] => [
     {
-      icon: "/Icons/block.svg",
+      icon: "/Icons/Lock.svg",
       title: "Block User",
       onclick: () => openBlockModal(userId),
       id: 1,
     },
     {
+      icon: "/Icons/unlock.svg",
+      title: "UnBlock User",
+      onclick: () => openUnBlockModal(userId),
+      id: 2,
+    },
+    {
       icon: "/Icons/Edit.svg",
       title: "Change Password",
       onclick: () => openChangePassword(userId),
-      id: 2,
+      id: 3,
     },
   ];
 
@@ -146,6 +179,15 @@ const User = () => {
             text="Do you want to block this user?"
             onclose={closeBlockModal}
             onclick={handleBlockUser}
+          />
+        </Modal>
+      )}
+      {showUnBlockModal && (
+        <Modal setShowModal={closeUnBlockModal}>
+          <ConfirmModal
+            text="Do you want to unblock this user?"
+            onclose={closeUnBlockModal}
+            onclick={handleUnBlockUser}
           />
         </Modal>
       )}
