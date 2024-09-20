@@ -24,7 +24,7 @@ const ArtistTable = ({ searchTerm }: { searchTerm: string }) => {
   const fetchArtists = async () => {
     try {
       const response = await axios.get(
-        "https://one919-backend.onrender.com/author",
+        "https://one919-backend-1.onrender.com/author",
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
@@ -56,7 +56,7 @@ const ArtistTable = ({ searchTerm }: { searchTerm: string }) => {
     if (selectedArtistId !== null) {
       try {
         await axios.delete(
-          `https://one919-backend.onrender.com/author/${selectedArtistId}`,
+          `https://one919-backend-1.onrender.com/author/${selectedArtistId}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
@@ -74,7 +74,7 @@ const ArtistTable = ({ searchTerm }: { searchTerm: string }) => {
   const handleEditArtist = async (updatedArtist: ArtistTableInterFace) => {
     try {
       await axios.put(
-        `https://one919-backend.onrender.com/author/${updatedArtist.id}`,
+        `https://one919-backend-1.onrender.com/author/${updatedArtist.id}`,
         updatedArtist,
         {
           headers: {
@@ -93,7 +93,7 @@ const ArtistTable = ({ searchTerm }: { searchTerm: string }) => {
   const addNewArtist = async (newArtist: ArtistTableInterFace) => {
     try {
       const response = await axios.post(
-        "https://one919-backend.onrender.com/author",
+        "https://one919-backend-1.onrender.com/author",
         newArtist,
         {
           headers: {

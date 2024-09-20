@@ -106,6 +106,29 @@
   width: 100%;
 }
 
+.options {
+  background-color: $dark3;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 400;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.select {
+  background-color: $dark3;
+  border-radius: 12px;
+  border: 1px solid $dark4;
+  padding: 4px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  width: 359px;
+}
 .error {
   border: 1px solid $error !important;
 }

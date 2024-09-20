@@ -77,11 +77,11 @@ const ArtistForm = ({
       return;
     }
 
-    setLoading(true); 
+    setLoading(true);
     let request;
     if (artist) {
       request = axios.put(
-        `https://one919-backend.onrender.com/author/${artist.id}`,
+        `https://one919-backend-1.onrender.com/author/${artist.id}`,
         formData,
         {
           headers: {
@@ -92,7 +92,7 @@ const ArtistForm = ({
       );
     } else {
       request = axios.post(
-        "https://one919-backend.onrender.com/author",
+        "https://one919-backend-1.onrender.com/author",
         formData,
         {
           headers: {
@@ -121,10 +121,9 @@ const ArtistForm = ({
 
         setShowModal(false);
       })
-      .catch((error) => {
-      })
+      .catch((error) => {})
       .finally(() => {
-        setLoading(false); 
+        setLoading(false);
       });
   };
 
@@ -226,10 +225,17 @@ const ArtistForm = ({
       </div>
 
       <div className={styles.button}>
-        <Button title={loading ? "Saving..." : artist ? "Update" : "Add"} disabled={loading} />
+        <Button
+          title={loading ? "Saving..." : artist ? "Update" : "Add"}
+          disabled={loading}
+        />
       </div>
 
-      {loading && <div className={styles.spinner}><Spinner /></div>} 
+      {loading && (
+        <div className={styles.spinner}>
+          <Spinner />
+        </div>
+      )}
     </form>
   );
 };

@@ -35,15 +35,14 @@ const Artist = () => {
 
   const handleSearch = () => {
     axios
-      .get(`https://one919-backend.onrender.com/search/q=${searchTerm}`, {
+      .get(`https://one919-backend-1.onrender.com/search/q=${searchTerm}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
         },
       })
       .then((response) => {
         setDataSource(response.data);
-      })
-      
+      });
   };
 
   return (

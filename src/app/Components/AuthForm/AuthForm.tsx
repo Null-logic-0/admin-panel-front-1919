@@ -54,7 +54,7 @@ const AuthForm = () => {
 
     try {
       const { data, status } = await axios.post(
-        "https://one919-backend.onrender.com/auth/admin/login",
+        "https://one919-backend-1.onrender.com/auth/admin/login",
         values
       );
       console.log(data, "data");
