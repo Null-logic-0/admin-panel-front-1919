@@ -30,7 +30,6 @@ const UserTable = ({
   const [dataSource, setDataSource] =
     useState<UserTableInterFace[]>(initialDataSource);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  console.log(dataSource, "unfiltered");
   useEffect(() => {
     fetchUsers();
   }, []);
